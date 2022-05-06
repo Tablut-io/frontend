@@ -6,13 +6,12 @@ import Button from '../Components/Button';
 const Landing = () => {
   const navigate = useNavigate();
   const onClickHandler = () => {
-    console.log('clicked');
-    navigate('/game/new');
+    navigate('/game/computer');
   }
   return (
     <Fragment>
-      <Button primary onClick={onClickHandler}>Create game</Button>
-      <Button>Join game</Button>
+      <Button primary>Play online</Button>
+      <Button onClick={onClickHandler}>Play computer</Button>
     </Fragment>
   )
 }

@@ -1,4 +1,17 @@
-# Getting Started with Create React App
+# The frontend for tablut.io
+
+## Description
+
+The site is for playing [tafl board games](https://en.wikipedia.org/wiki/Tafl_games) which are games based off of the rules for a game called
+tablut which is a variant of these games and recorded by [Carl Linnaeus](https://en.wikipedia.org/wiki/Carl_Linnaeus)
+
+## Tech Stack
+
+* React
+* Styled Components
+* React Router DOM
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

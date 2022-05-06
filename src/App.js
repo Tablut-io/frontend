@@ -17,6 +17,8 @@ const Wrapper = styled.main`
   padding: 1em;
   display: flex;
   flex-direction: column;
+  max-width: 1280px;
+  border: 1px solid black;
 `
 
 function App() {
