@@ -5,6 +5,7 @@ import {
 } from 'react-router-dom';
 import styled from 'styled-components';
 
+import { socket, SocketContext } from './Context/SocketContext';
 // pages components
 import Game from './Pages/Game';
 import Landing from './Pages/Landing';
@@ -23,15 +24,17 @@ const Wrapper = styled.main`
 
 function App() {
   return (
-    <BrowserRouter>
-      <NavigationBar />
-      <Wrapper>
-        <Routes>
-          <Route path='/' element={<Landing />} />
-          <Route path="/game/:gameId" element={<Game />} />
-        </Routes>
-      </Wrapper>
-    </BrowserRouter>
+    <SocketContext.Provider value={socket}>
+      <BrowserRouter>
+        <NavigationBar />
+        <Wrapper>
+          <Routes>
+            <Route path='/' element={<Landing />} />
+            <Route path="/game/:gameId" element={<Game />} />
+          </Routes>
+        </Wrapper>
+      </BrowserRouter>
+    </SocketContext.Provider>
   );
 }
 

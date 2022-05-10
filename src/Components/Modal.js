@@ -1,3 +1,4 @@
+import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 
 const ModalContent = styled.div`
@@ -20,13 +21,13 @@ const ModalWrapper = styled.div`
 `
 
 const Modal = ({children}) => {
-  return (
+  return ReactDOM.createPortal(
     <ModalWrapper>
       <ModalContent>
         {children}
       </ModalContent>
     </ModalWrapper>
-  )
-}
+  , document.getElementById('modal-root'));
+};
 
 export default Modal;

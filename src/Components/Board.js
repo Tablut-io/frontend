@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react';
+import { Fragment } from 'react';
 import styled from 'styled-components';
 
 import Square from './Square';
@@ -12,9 +12,7 @@ const StyledBoard = styled.div`
   max-width: 600px;
 `
 
-const Board = (props) => {
-  const [positions] = useState(Array.from(Array(11), () => new Array(11).fill(null)));
-
+const Board = ({positions}) => {
   return (
     <StyledBoard>
       {positions.map((row, i) => {

@@ -1,17 +1,20 @@
-import { Fragment } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Fragment, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 import Button from '../Components/Button';
+import GameSetup from './GameSetup';
 
 const Landing = () => {
+  const [showGameSetup, setShowGameSetup] = useState(false);
   const navigate = useNavigate();
-  const onClickHandler = () => {
-    navigate('/game/computer');
-  }
+  const playOnlineHandler = () => {
+    navigate('/game/online');
+  };
   return (
     <Fragment>
-      <Button primary>Play online</Button>
-      <Button onClick={onClickHandler}>Play computer</Button>
+      <Button primary onClick={playOnlineHandler}>Play online</Button>
+      <Link to='/game/computer'>Play computer</Link>
+      {showGameSetup && <GameSetup />}
     </Fragment>
   )
 }
