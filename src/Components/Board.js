@@ -12,13 +12,13 @@ const StyledBoard = styled.div`
   max-width: 600px;
 `
 
-const Board = ({positions}) => {
+const Board = ({ positions }) => {
   return (
     <StyledBoard>
       {positions.map((row, i) => {
         return (
           <Fragment key={i}>
-            {row.map((square, j) => <Square key={'' + i + j} position={[i, j]} square={square} />)}
+            {row.map((piece, j) => <Square key={'' + i + j} position={[i, j]} piece={piece} />)}
           </Fragment>
         )
       })}
