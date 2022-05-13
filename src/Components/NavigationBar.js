@@ -11,13 +11,14 @@ const Header = styled.header`
   padding-left: 1em;
 `
 
-const NavigationBar = () => {
+const NavigationBar = ({ username }) => {
   return (
     <Header>
       <PageLink to="/">Tablut.io</PageLink>
       <div>
         <PageLink to="/about">About</PageLink>
         <PageLink to="/rules">Rules</PageLink>
+        {<div>username:{username}</div>}
       </div>
     </Header>
   )

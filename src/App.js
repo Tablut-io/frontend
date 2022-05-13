@@ -1,4 +1,4 @@
-import { useReducer } from 'react';
+import { useEffect, useReducer } from 'react';
 import {
   BrowserRouter,
   Navigate,
@@ -6,7 +6,6 @@ import {
   Routes,
 } from 'react-router-dom';
 import styled from 'styled-components';
-import io from 'socket.io-client';
 
 // Context
 import Context from './utility/context';
@@ -20,6 +19,8 @@ import { CLOSEMODAL, SETUSERNAME, SHOWENTERUSERNAME, SHOWGAMESETUP, SHOWJOINGAME
 import EnterUsername from './modals/EnterUsername';
 import GameSetup from './modals/GameSetup';
 import JoinGame from './modals/JoinGame';
+// socketio
+import socket from './utility/socket';
 // Styled Components
 const Wrapper = styled.main`
   margin: 0 auto;
@@ -30,14 +31,8 @@ const Wrapper = styled.main`
   min-width: 300px;
   border: 1px solid black;
 `
-// State and Reducer
-const initialState = {
-  lightTheme: true,
-  showEnterUsername: false,
-  showGameSetup: false,
-  showJoinGame: false,
-  socket: null,
-};
+
+// initial state and reducer function
 function reducer(state, action) {
   const newState = { ...state };
   switch (action.type) {
@@ -47,6 +42,7 @@ function reducer(state, action) {
       newState.showJoinGame = false;
       break;
     case SETUSERNAME:
+      newState.username = action.username;
       newState.socket.auth = { username: action.username };
       break;
     case SHOWENTERUSERNAME:
@@ -63,27 +59,29 @@ function reducer(state, action) {
   }
   return newState;
 }
+const initialState = {
+  lightTheme: true,
+  showEnterUsername: false,
+  showGameSetup: false,
+  showJoinGame: false,
+  username: null,
+  socket,
+};
 
 function App() {
-  // setup socketio
-  const socket = io('http://localhost:8080', { autoConnect: false });
-  socket.onAny((event, ...args) => {
-    console.log(event, args);
-  });
-  socket.on('session', ({ sessionId, userId }) => {
-    socket.auth = { sessionId };
-    localStorage.setItem('sessionId', sessionId);
-    socket.userId = userId;
-  });
-
-  // setup initial state and dispatch
-  initialState.socket = socket;
   const [state, dispatch] = useReducer(reducer, initialState);
-
+  useEffect(() => {
+    socket.on('session', ({ sessionId, userId, username}) => {
+      socket.auth = { sessionId };
+      localStorage.setItem('sessionId', sessionId);
+      socket.userId = userId;
+      dispatch({ type: SETUSERNAME, username });
+    });
+  });
   return (
     <Context.Provider value={[state, dispatch]}>
         <BrowserRouter>
-          <NavigationBar dispatch={dispatch} username={state.socket.username} />
+          <NavigationBar dispatch={dispatch} username={state.username} />
           <Wrapper>
             <Routes>
               <Route path='/' element={<Landing dispatch={dispatch}/>} />
