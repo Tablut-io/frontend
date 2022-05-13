@@ -1,7 +1,7 @@
+import { Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-const Button = styled.button`
-  /* Adapt the colors based on primary prop */
+const PageLink = styled(Link)`
   background: ${props => props.primary ? "gray" : "white"};
   color: ${props => props.primary ? "white" : "gray"};
   font-size: 1em;
@@ -11,6 +11,10 @@ const Button = styled.button`
   border-radius: 3px;
   cursor: pointer;
   width: fit-content;
+  text-decoration: ${props => props.underline ? 'underline' : 'none'};
 `;
 
-export default Button;
+const StyledNavLink = styled(NavLink)`
+`
+
+export { PageLink, StyledNavLink };

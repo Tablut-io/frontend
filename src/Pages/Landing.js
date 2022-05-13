@@ -1,21 +1,16 @@
-import { Fragment, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { PageLink } from '../styled_components/reactRouter';
+import { Button } from '../styled_components/userInterface';
+import { SHOWGAMESETUP, SHOWJOINGAME } from '../utility/actionConstants';
 
-import Button from '../Components/Button';
-import GameSetup from './GameSetup';
-
-const Landing = () => {
-  const [showGameSetup, setShowGameSetup] = useState(false);
-  const navigate = useNavigate();
-  const playOnlineHandler = () => {
-    navigate('/game/online');
+const Landing = ({ dispatch }) => {
+  const handleJoinGame = () => {
+    dispatch({ type: SHOWJOINGAME });
   };
   return (
-    <Fragment>
-      <Button primary onClick={playOnlineHandler}>Play online</Button>
-      <Link to='/game/computer'>Play computer</Link>
-      {showGameSetup && <GameSetup />}
-    </Fragment>
+    <>
+      <PageLink to='/game'>Create game</PageLink>
+      <Button onClick={handleJoinGame}>Join game</Button>
+    </>
   )
 }
 

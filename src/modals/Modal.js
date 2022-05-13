@@ -1,5 +1,9 @@
+import { useContext } from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
+import { CLOSEMODAL } from '../utility/actionConstants';
+
+import Context from '../utility/context';
 
 const ModalContent = styled.div`
   position:fixed;
@@ -9,6 +13,9 @@ const ModalContent = styled.div`
   top:50%;
   left:50%;
   transform: translate(-50%,-50%);
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
 `
 const ModalWrapper = styled.div`
   z-index: 100;
@@ -20,10 +27,17 @@ const ModalWrapper = styled.div`
   background: rgba(0, 0, 0, 0.6);
 `
 
-const Modal = ({children}) => {
+const Modal = ({ allowClose, children }) => {
+  const [, dispatch] = useContext(Context);
+  const onClickHandler = (event) => {
+    event.preventDefault();
+    if (allowClose) {
+      dispatch({ type: CLOSEMODAL });
+    }
+  }
   return ReactDOM.createPortal(
-    <ModalWrapper>
-      <ModalContent>
+    <ModalWrapper onClick={onClickHandler}>
+      <ModalContent onClick={(event) => event.stopPropagation()}>
         {children}
       </ModalContent>
     </ModalWrapper>

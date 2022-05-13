@@ -1,8 +1,8 @@
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+import { PageLink } from '../styled_components/reactRouter';
 
-const StyledHeader = styled.header`
+const Header = styled.header`
   background-color: gray;
   height: 4em;
   display: flex;
@@ -13,13 +13,13 @@ const StyledHeader = styled.header`
 
 const NavigationBar = () => {
   return (
-    <StyledHeader>
-      <Link to="/">Tablut.io</Link>
+    <Header>
+      <PageLink to="/">Tablut.io</PageLink>
       <div>
-        <Link to="/about">About</Link>
-        <Link to="/rules">Rules</Link>
+        <PageLink to="/about">About</PageLink>
+        <PageLink to="/rules">Rules</PageLink>
       </div>
-    </StyledHeader>
+    </Header>
   )
 }
 
