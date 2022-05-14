@@ -27,13 +27,11 @@ const ModalWrapper = styled.div`
   background: rgba(0, 0, 0, 0.6);
 `
 
-const Modal = ({ allowClose, children }) => {
+const Modal = ({ children }) => {
   const [, dispatch] = useContext(Context);
   const onClickHandler = (event) => {
     event.preventDefault();
-    if (allowClose) {
-      dispatch({ type: CLOSEMODAL });
-    }
+    dispatch({ type: CLOSEMODAL });
   }
   return ReactDOM.createPortal(
     <ModalWrapper onClick={onClickHandler}>

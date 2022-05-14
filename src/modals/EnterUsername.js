@@ -1,14 +1,12 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 
-import Context from '../utility/context';
 import Modal from './Modal';
 import { CLOSEMODAL } from '../utility/actionConstants';
 // styled components
 import { TextInput, Submit } from '../styled_components/form';
 
-const EnterUsername = ({ socket }) => {
-  const [state, dispatch] = useContext(Context);
-  const [usernameInput, setUsernameInput] = useState(state.socket.username || '');
+const EnterUsername = ({ dispatch, socket }) => {
+  const [usernameInput, setUsernameInput] = useState(socket.username || '');
   const handleUsernameInputChange = (event) => {
     setUsernameInput(event.target.value);
   };
@@ -20,7 +18,7 @@ const EnterUsername = ({ socket }) => {
   return (
     <Modal>
       <form onSubmit={handleSubmit}>
-        <h1>{state.socket.username ? 'Change username' : 'Enter username'}</h1>
+        <h1>{socket.username ? 'Change username' : 'Enter username'}</h1>
         <label>
           Username:
           <TextInput value={usernameInput} onChange={handleUsernameInputChange}/>

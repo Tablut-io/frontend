@@ -1,5 +1,5 @@
 // external imports
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 
 // internal imports
@@ -14,14 +14,10 @@ const PlayerContainer = styled.div`
 // component responsible for managing the socket
 // from here data received from the socket can send updates to respective components
 // from here data will be sent over the socket to the server
-const Game = ({ state }) => {
+const Game = ({ socket }) => {
   const [positions,] = useState(Array.from(Array(11), () => new Array(11).fill(null)));
   const [attacker, ] = useState(null);
   const [defender, ] = useState(null);
-  // const [, ] = useState(null);
-  const socket = state.socket;
-  useEffect(() => {
-  }, [])
   return (
     <GameContainer>
       <Button onClick={() => socket.emit('hello')}>Say hello to server</Button>

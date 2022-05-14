@@ -5,8 +5,7 @@ import {
   Route,
   Routes,
 } from 'react-router-dom';
-import styled from 'styled-components';
-
+import styled, { ThemeProvider } from 'styled-components';
 // Context
 import Context from './utility/context';
 // Pages Components
@@ -14,15 +13,17 @@ import Game from './pages/Game';
 import Landing from './pages/Landing';
 // Components
 import NavigationBar from './components/NavigationBar';
-import { CLOSEMODAL, SETUSERNAME, SHOWENTERUSERNAME, SHOWGAMESETUP, SHOWJOINGAME } from './utility/actionConstants';
+import { SETUSERNAME } from './utility/actionConstants';
 // modals
 import EnterUsername from './modals/EnterUsername';
-import GameSetup from './modals/GameSetup';
 import JoinGame from './modals/JoinGame';
 // socketio
 import socket from './utility/socket';
+// reducer
+import { initialState, reducer } from './utility/reducer';
+
 // Styled Components
-const Wrapper = styled.main`
+const Main = styled.main`
   margin: 0 auto;
   padding: 1em;
   display: flex;
@@ -31,41 +32,6 @@ const Wrapper = styled.main`
   min-width: 300px;
   border: 1px solid black;
 `
-
-// initial state and reducer function
-function reducer(state, action) {
-  const newState = { ...state };
-  switch (action.type) {
-    case CLOSEMODAL:
-      newState.showEnterUsername = false;
-      newState.showGameSetup = false;
-      newState.showJoinGame = false;
-      break;
-    case SETUSERNAME:
-      newState.username = action.username;
-      break;
-    case SHOWENTERUSERNAME:
-      newState.showEnterUsername = true;
-      break;
-    case SHOWGAMESETUP:
-      newState.showGameSetup = true;
-      break;
-    case SHOWJOINGAME:
-      newState.showJoinGame = true;
-      break;
-    default:
-      throw new Error('action type not found');
-  }
-  return newState;
-}
-const initialState = {
-  lightTheme: true,
-  showEnterUsername: false,
-  showGameSetup: false,
-  showJoinGame: false,
-  username: null,
-  socket,
-};
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -77,21 +43,22 @@ function App() {
     });
   });
   return (
-    <Context.Provider value={[state, dispatch]}>
-        <BrowserRouter>
-          <NavigationBar dispatch={dispatch} username={state.username} />
-          <Wrapper>
-            <Routes>
-              <Route path='/' element={<Landing dispatch={dispatch}/>} />
-              <Route path="/game" element={<Game state={state} dispatch={dispatch} />} />
-              <Route path="*" element={<Navigate to="/" replace />} />
-            </Routes>
-          </Wrapper>
+    <ThemeProvider theme={state} >
+      <BrowserRouter>
+        <NavigationBar connected={socket.connected} dispatch={dispatch} username={state.username} />
+        <Main>
+          <Routes>
+            <Route path='/' element={<Landing dispatch={dispatch}/>} />
+            <Route path="/game" element={<Game socket={socket} dispatch={dispatch} />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </Main>
+        <Context.Provider value={[state, dispatch]}>
           {state.showEnterUsername && <EnterUsername socket={socket} dispatch={dispatch} />}
-          {state.showGameSetup && <GameSetup dispatch={dispatch} />}
           {state.showJoinGame && <JoinGame dispatch={dispatch} />}
-        </BrowserRouter>
-    </Context.Provider>
+        </Context.Provider>
+      </BrowserRouter>
+    </ThemeProvider>
   );
 }
 

@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 
 import { PageLink } from '../styled_components/reactRouter';
-import { Button } from '../styled_components/userInterface';
-import { SHOWENTERUSERNAME } from '../utility/actionConstants';
+import { Button, ThemeToggle } from '../styled_components/userInterface';
+import { SHOWENTERUSERNAME, TOGGLETHEME } from '../utility/actionConstants';
+import socket from '../utility/socket';
 
 const Header = styled.header`
   background-color: gray;
@@ -17,7 +18,9 @@ const NavigationBar = ({ username, dispatch }) => {
   return (
     <Header>
       <PageLink to="/">Tablut.io</PageLink>
+      {!socket.connected && <div>NOT CONNECTED TO SERVER</div>}
       <div>
+        <ThemeToggle onClick={() => dispatch({type: TOGGLETHEME })} />
         <PageLink to="/about">About</PageLink>
         <PageLink to="/rules">Rules</PageLink>
         {<Button onClick={() => dispatch({type: SHOWENTERUSERNAME })}>username:{username}</Button>}

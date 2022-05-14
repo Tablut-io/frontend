@@ -4,3 +4,4 @@ export const SHOWENTERUSERNAME = 'show enter username modal';
 export const SHOWGAMESETUP = 'show game setup modal';
 export const SHOWJOINGAME = 'show join game modal'
 export const SETUSERNAME = 'set username';
+export const TOGGLETHEME = 'toggle between light and dark theme';

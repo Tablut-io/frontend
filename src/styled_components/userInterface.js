@@ -13,4 +13,12 @@ const Button = styled.button`
   text-decoration: ${props => props.underline ? 'underline' : 'none'};
 `;
 
-export { Button };
+const ThemeToggle = styled.button`
+  height: 2rem;
+  width: 2rem;
+  background-color: ${props => props.theme.lightTheme ? 'white' : 'black'};
+  border-radius: 0.5rem;
+  cursor: pointer;
+`
+
+export { Button, ThemeToggle };
