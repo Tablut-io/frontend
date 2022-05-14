@@ -22,7 +22,8 @@ import socket from './utility/socket';
 // reducer
 import { initialState, reducer } from './utility/reducer';
 
-// Styled Components
+// Styling
+import GlobalStyle from './styled_components/GlobalStyle';
 const Main = styled.main`
   margin: 0 auto;
   padding: 1em;
@@ -44,6 +45,7 @@ function App() {
   });
   return (
     <ThemeProvider theme={state} >
+      <GlobalStyle />
       <BrowserRouter>
         <NavigationBar connected={socket.connected} dispatch={dispatch} username={state.username} />
         <Main>
