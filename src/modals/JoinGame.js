@@ -13,7 +13,7 @@ const JoinGame = () => {
       <form>
         <label>
           Find game by username
-          <input type="text" value={gameId} onChange={handleChange}/>
+          <input type="text" value={gameId} onChange={handleChange} />
         </label>
       </form>
     </Modal>

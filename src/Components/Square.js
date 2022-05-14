@@ -21,7 +21,7 @@ const Piece = styled.div`
 const Square = ({ position, piece }) => {
   const [row, column] = position;
   return (
-    <SquareContainer row={row+1} column={column+2} >
+    <SquareContainer row={row+1} column={column+2}>
       {piece && <Piece piece={piece} />}
     </SquareContainer>
   )

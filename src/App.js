@@ -9,8 +9,10 @@ import styled, { ThemeProvider } from 'styled-components';
 // Context
 import Context from './utility/context';
 // Pages Components
+import About from './pages/About';
 import Game from './pages/Game';
 import Landing from './pages/Landing';
+import Rules from './pages/Rules';
 // Components
 import NavigationBar from './components/NavigationBar';
 import { SETUSERNAME } from './utility/actionConstants';
@@ -44,13 +46,15 @@ function App() {
     });
   });
   return (
-    <ThemeProvider theme={state} >
+    <ThemeProvider theme={state}>
       <GlobalStyle />
       <BrowserRouter>
         <NavigationBar connected={socket.connected} dispatch={dispatch} username={state.username} />
         <Main>
           <Routes>
-            <Route path='/' element={<Landing dispatch={dispatch}/>} />
+            <Route path='/' element={<Landing dispatch={dispatch} />} />
+            <Route path='/about' element={<About />} />
+            <Route path='/Rules' element={<Rules />} />
             <Route path="/game" element={<Game socket={socket} dispatch={dispatch} />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>

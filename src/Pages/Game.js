@@ -16,11 +16,10 @@ const PlayerContainer = styled.div`
 // from here data will be sent over the socket to the server
 const Game = ({ socket }) => {
   const [positions,] = useState(Array.from(Array(11), () => new Array(11).fill(null)));
-  const [attacker, ] = useState(null);
-  const [defender, ] = useState(null);
+  const [attacker,] = useState(null);
+  const [defender,] = useState(null);
   return (
     <GameContainer>
-      <Button onClick={() => socket.emit('hello')}>Say hello to server</Button>
       <PlayerContainer>
         <div>
           Attacker:{attacker || <Button>Join</Button>}
@@ -30,7 +29,7 @@ const Game = ({ socket }) => {
           Defender:{defender || <Button>Join</Button>}
         </div>
       </PlayerContainer>
-      <Board positions={positions}/>
+      <Board positions={positions} />
     </GameContainer>
   )
 }

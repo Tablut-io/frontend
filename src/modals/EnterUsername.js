@@ -21,7 +21,7 @@ const EnterUsername = ({ dispatch, socket }) => {
         <h1>{socket.username ? 'Change username' : 'Enter username'}</h1>
         <label>
           Username:
-          <TextInput value={usernameInput} onChange={handleUsernameInputChange}/>
+          <TextInput value={usernameInput} onChange={handleUsernameInputChange} />
         </label>
         <Submit value="Accept" />
       </form>
