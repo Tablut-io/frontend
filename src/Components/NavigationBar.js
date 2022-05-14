@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 import { PageLink } from '../styled_components/reactRouter';
+import { Button } from '../styled_components/userInterface';
+import { SHOWENTERUSERNAME } from '../utility/actionConstants';
 
 const Header = styled.header`
   background-color: gray;
@@ -11,14 +13,14 @@ const Header = styled.header`
   padding-left: 1em;
 `
 
-const NavigationBar = ({ username }) => {
+const NavigationBar = ({ username, dispatch }) => {
   return (
     <Header>
       <PageLink to="/">Tablut.io</PageLink>
       <div>
         <PageLink to="/about">About</PageLink>
         <PageLink to="/rules">Rules</PageLink>
-        {<div>username:{username}</div>}
+        {<Button onClick={() => dispatch({type: SHOWENTERUSERNAME })}>username:{username}</Button>}
       </div>
     </Header>
   )

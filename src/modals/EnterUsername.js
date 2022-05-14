@@ -2,11 +2,11 @@ import { useContext, useState } from 'react';
 
 import Context from '../utility/context';
 import Modal from './Modal';
-import { CLOSEMODAL, SETUSERNAME } from '../utility/actionConstants';
+import { CLOSEMODAL } from '../utility/actionConstants';
 // styled components
 import { TextInput, Submit } from '../styled_components/form';
 
-const EnterUsername = () => {
+const EnterUsername = ({ socket }) => {
   const [state, dispatch] = useContext(Context);
   const [usernameInput, setUsernameInput] = useState(state.socket.username || '');
   const handleUsernameInputChange = (event) => {
@@ -14,11 +14,8 @@ const EnterUsername = () => {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch({ 
-      type: SETUSERNAME,
-      username: usernameInput,
-    });
     dispatch({ type: CLOSEMODAL });
+    socket.emit('change username', usernameInput);
   }
   return (
     <Modal>

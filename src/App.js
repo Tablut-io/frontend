@@ -43,7 +43,6 @@ function reducer(state, action) {
       break;
     case SETUSERNAME:
       newState.username = action.username;
-      newState.socket.auth = { username: action.username };
       break;
     case SHOWENTERUSERNAME:
       newState.showEnterUsername = true;
@@ -71,10 +70,9 @@ const initialState = {
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
   useEffect(() => {
-    socket.on('session', ({ sessionId, userId, username}) => {
+    socket.on('session', ({ sessionId, username}) => {
       socket.auth = { sessionId };
       localStorage.setItem('sessionId', sessionId);
-      socket.userId = userId;
       dispatch({ type: SETUSERNAME, username });
     });
   });
@@ -89,7 +87,7 @@ function App() {
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </Wrapper>
-          {state.showEnterUsername && <EnterUsername dispatch={dispatch} />}
+          {state.showEnterUsername && <EnterUsername socket={socket} dispatch={dispatch} />}
           {state.showGameSetup && <GameSetup dispatch={dispatch} />}
           {state.showJoinGame && <JoinGame dispatch={dispatch} />}
         </BrowserRouter>
