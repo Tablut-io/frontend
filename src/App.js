@@ -15,7 +15,7 @@ import Landing from './pages/Landing';
 import Rules from './pages/Rules';
 // Components
 import NavigationBar from './components/NavigationBar';
-import { SETUSERNAME } from './utility/actionConstants';
+import { SETSESSIONINFO } from './utility/actionConstants';
 // modals
 import EnterUsername from './modals/EnterUsername';
 import JoinGame from './modals/JoinGame';
@@ -39,17 +39,22 @@ const Main = styled.main`
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
   useEffect(() => {
-    socket.on('session', ({ sessionId, username}) => {
+    socket.on('session', (sessionInfo) => {
+      const sessionId = sessionInfo.sessionId;
       socket.auth = { sessionId };
       localStorage.setItem('sessionId', sessionId);
-      dispatch({ type: SETUSERNAME, username });
+      dispatch({ type: SETSESSIONINFO, sessionInfo});
     });
   });
   return (
     <ThemeProvider theme={state}>
       <GlobalStyle />
       <BrowserRouter>
-        <NavigationBar connected={socket.connected} dispatch={dispatch} username={state.username} />
+        <NavigationBar
+          connected={socket.connected}
+          dispatch={dispatch}
+          username={state.sessionInfo?.username}
+        />
         <Main>
           <Routes>
             <Route path='/' element={<Landing dispatch={dispatch} />} />

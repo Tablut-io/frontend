@@ -15,6 +15,7 @@ const Header = styled.header`
 `
 
 const NavigationBar = ({ username, dispatch }) => {
+  console.log('username', username)
   return (
     <Header>
       <PageLink to="/">Tablut.io</PageLink>

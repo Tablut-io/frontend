@@ -18,7 +18,7 @@ const EnterUsername = ({ dispatch, socket }) => {
   return (
     <Modal>
       <form onSubmit={handleSubmit}>
-        <h1>{socket.username ? 'Change username' : 'Enter username'}</h1>
+        <h1>Change username</h1>
         <label>
           Username:
           <TextInput value={usernameInput} onChange={handleUsernameInputChange} />

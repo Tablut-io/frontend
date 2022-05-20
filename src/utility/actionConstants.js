@@ -3,5 +3,5 @@ export const CLOSEMODAL = 'close any and all modals';
 export const SHOWENTERUSERNAME = 'show enter username modal';
 export const SHOWGAMESETUP = 'show game setup modal';
 export const SHOWJOINGAME = 'show join game modal'
-export const SETUSERNAME = 'set username';
+export const SETSESSIONINFO = 'set session info';
 export const TOGGLETHEME = 'toggle between light and dark theme';
