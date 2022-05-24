@@ -60,7 +60,7 @@ function App() {
             <Route path='/' element={<Landing dispatch={dispatch} />} />
             <Route path='/about' element={<About />} />
             <Route path='/rules' element={<Rules />} />
-            <Route path="/game" element={<Game socket={socket} dispatch={dispatch} />} />
+            <Route path="/game" element={<Game state={state} socket={socket} dispatch={dispatch} />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </Main>

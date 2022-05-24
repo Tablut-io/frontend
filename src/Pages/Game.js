@@ -14,13 +14,18 @@ const PlayerContainer = styled.div`
 // component responsible for managing the socket
 // from here data received from the socket can send updates to respective components
 // from here data will be sent over the socket to the server
-const Game = ({ socket }) => {
+const Game = ({ socket, state }) => {
+  const userId = state.sessionInfo?.userId;
   const [positions, setPositions] = useState(Array.from(Array(11), () => new Array(11).fill(null)));
-  const [attacker,] = useState(null);
-  const [defender,] = useState(null);
+  const [attacker, setAttacker] = useState(null);
+  const [defender, setDefender] = useState(null);
+  const [turn, setTurn] = useState(null);
   useEffect(() => {
-    socket.on('updated game state', ({ positions, players, turn }) => {
+    socket.on('updated game state', ({ positions, turn, attacker, defender }) => {
       setPositions(positions);
+      setAttacker(attacker);
+      setDefender(defender);
+      setTurn(turn);
     });
     socket.emit('initialize game');
   }, [socket]);
@@ -33,14 +38,18 @@ const Game = ({ socket }) => {
     <GameContainer>
       <PlayerContainer>
         <div>
-          Attacker:{attacker || <Button onClick={() => handleJoin('attacker')}>Join</Button>}
+          {turn === 'attacker' ? '(Turn)' : null}
+          Attacker:{attacker?.username || defender?.userId === userId || <Button onClick={() => handleJoin('attacker')}>Join</Button>}
+          {attacker?.userId === userId && <Button>Leave</Button>}
         </div>
         <div>vs.</div>
         <div>
-          Defender:{defender || <Button onClick={() => handleJoin('defender')}>Join</Button>}
+          {turn === 'defender' ? '(Turn)' : null}
+          Defender:{defender?.username || attacker?.userId === userId || <Button onClick={() => handleJoin('defender')}>Join</Button>}
+          {defender?.userId === userId && <Button>Leave</Button>}
         </div>
       </PlayerContainer>
-      <Board positions={positions} />
+      <Board amDefender={defender?.userId === userId} turn={turn} positions={positions} />
     </GameContainer>
   );
 }
