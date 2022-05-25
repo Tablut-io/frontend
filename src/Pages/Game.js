@@ -1,5 +1,6 @@
 // external imports
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 // internal imports
@@ -20,6 +21,7 @@ const Game = ({ socket, state }) => {
   const [attacker, setAttacker] = useState(null);
   const [defender, setDefender] = useState(null);
   const [turn, setTurn] = useState(null);
+  const { gameId } = useParams();
   useEffect(() => {
     socket.on('updated game state', ({ positions, turn, attacker, defender }) => {
       setPositions(positions);
@@ -27,7 +29,7 @@ const Game = ({ socket, state }) => {
       setDefender(defender);
       setTurn(turn);
     });
-    socket.emit('initialize game');
+    socket.emit('join game', gameId);
   }, [socket]);
 
   const handleJoin = (side) => {

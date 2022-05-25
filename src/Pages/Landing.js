@@ -1,14 +1,22 @@
-import { PageLink } from '../styled_components/reactRouter';
+import { useNavigate } from 'react-router-dom';
+
 import { Button } from '../styled_components/userInterface';
 import { SHOWJOINGAME } from '../utility/actionConstants';
 
-const Landing = ({ dispatch }) => {
+const Landing = ({ dispatch, socket }) => {
+  const navigate = useNavigate();
   const handleJoinGame = () => {
     dispatch({ type: SHOWJOINGAME });
   };
+  const handleCreateGame = () => {
+    socket.emit('initialize game');
+    socket.on('game initialized', (gameId) => {
+      navigate(`/game/${gameId}`);
+    });
+  };
   return (
     <>
-      <PageLink to='/game'>Create game</PageLink>
+      <Button onClick={handleCreateGame}>Create game</Button>
       <Button onClick={handleJoinGame}>Join game</Button>
     </>
   )
