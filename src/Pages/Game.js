@@ -35,6 +35,15 @@ const Game = ({ socket, state }) => {
   const handleJoin = (side) => {
     socket.emit('join side', side);
   };
+  const handleMove = (move) => {
+    socket.emit('make move', move);
+  };
+
+  let startPos;
+  const handleDrop = (endPos) => {
+    console.log(startPos, endPos);
+    socket.emit('make move', { startPos, endPos });
+  };
 
   return (
     <GameContainer>
@@ -51,7 +60,13 @@ const Game = ({ socket, state }) => {
           {defender?.userId === userId && <Button>Leave</Button>}
         </div>
       </PlayerContainer>
-      <Board amDefender={defender?.userId === userId} turn={turn} positions={positions} />
+      <Board
+        amDefender={defender?.userId === userId}
+        turn={turn}
+        positions={positions}
+        onDragStart={(position) => startPos = position}
+        onDrop={handleDrop}
+      />
     </GameContainer>
   );
 }

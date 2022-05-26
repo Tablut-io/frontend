@@ -15,14 +15,32 @@ const Piece = styled.div`
   width: 80%;
   height: 80%;
   border-radius: 8px;
-  background-color: ${props => props.piece === 'attacker' ? 'black' : 'white'}
+  background-color: ${({piece}) => piece === 'attacker' ? 'black' : 'white'};
+  cursor: ${({draggable}) => draggable ? 'pointer': 'default'};
 `
 
-const Square = ({ position, piece }) => {
+const Square = ({ position, piece, onDragStart, onDrop, turn, amDefender }) => {
   const [row, column] = position;
+
+  let draggable;
+  if (amDefender) {
+    draggable = (piece === 'defender' || piece === 'king') && turn === 'defender';
+  } else {
+    draggable = piece === 'attacker' && turn === 'attacker';
+  }
+  const handleDrop = (event) => {
+    event.preventDefault();
+    console.log('dropped', position);
+    onDrop(position);
+  }
   return (
-    <SquareContainer row={row+1} column={column+2}>
-      {piece && <Piece piece={piece} />}
+    <SquareContainer onDragOver={(event) => event.preventDefault()} onDrop={handleDrop} row={row+1} column={column+2}>
+      {piece &&
+        <Piece
+          piece={piece}
+          draggable={draggable}
+          onDragStart={() => onDragStart(position)}
+        />}
     </SquareContainer>
   )
 }
