@@ -13,7 +13,7 @@ const JoinGame = ({ dispatch }) => {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-    navigate(`/game/${gameId}`);
+    navigate(`/game`, { state: { gameId }});
     dispatch({ type: CLOSEMODAL });
   }
   return (

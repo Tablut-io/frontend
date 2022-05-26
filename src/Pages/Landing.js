@@ -11,7 +11,7 @@ const Landing = ({ dispatch, socket }) => {
   const handleCreateGame = () => {
     socket.emit('initialize game');
     socket.on('game initialized', (gameId) => {
-      navigate(`/game/${gameId}`);
+      navigate(`/game`, { state: { gameId }});
     });
   };
   return (
