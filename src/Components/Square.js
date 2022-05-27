@@ -30,7 +30,6 @@ const Square = ({ position, piece, onDragStart, onDrop, turn, amDefender }) => {
   }
   const handleDrop = (event) => {
     event.preventDefault();
-    console.log('dropped', position);
     onDrop(position);
   }
   return (

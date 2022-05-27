@@ -13,6 +13,33 @@ const Button = styled.button`
   text-decoration: ${props => props.underline ? 'underline' : 'none'};
 `;
 
+const CloseIcon = styled.div`
+  position: absolute;
+  right: 32px;
+  top: 32px;
+  width: 32px;
+  height: 32px;
+  opacity: 0.3;
+  cursor: pointer;
+  &:hover {
+    opacity: 1;
+  }
+  &:before, &:after {
+    position: absolute;
+    left: 15px;
+    content: ' ';
+    height: 33px;
+    width: 2px;
+    background-color: #333;
+  }
+  &:before {
+    transform: rotate(45deg);
+  }
+  &:after {
+    transform: rotate(-45deg);
+  }
+`
+
 const ThemeToggle = styled.button`
   height: 2rem;
   width: 2rem;
@@ -21,4 +48,4 @@ const ThemeToggle = styled.button`
   cursor: pointer;
 `
 
-export { Button, ThemeToggle };
+export { Button, CloseIcon, ThemeToggle };
