@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import { CLOSEMODAL } from '../utility/actionConstants';
 
-import Context from '../utility/context';
+import { AppContext} from '../utility/context';
 
 const ModalContent = styled.div`
   position:fixed;
@@ -28,7 +28,7 @@ const ModalWrapper = styled.div`
 `
 
 const Modal = ({ children }) => {
-  const [, dispatch] = useContext(Context);
+  const [, dispatch] = useContext(AppContext);
   const onClickHandler = (event) => {
     event.preventDefault();
     dispatch({ type: CLOSEMODAL });

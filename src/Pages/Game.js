@@ -5,13 +5,12 @@ import styled from 'styled-components';
 
 // internal imports
 import Board from '../components/Board';
-import { Button } from '../styled_components/userInterface';
+import PlayerContainer from '../components/PlayerContainer';
+
+
 // styled components
 const GameContainer = styled.div`
 `
-const PlayerContainer = styled.div`
-`
-
 // component responsible for managing the socket
 // from here data received from the socket can send updates to respective components
 // from here data will be sent over the socket to the server
@@ -35,7 +34,7 @@ const Game = ({ socket, appState }) => {
     });
     socket.on('game not found', () => navigate('/'));
     socket.emit('join game', gameId);
-  }, [socket, gameId]);
+  }, [socket, gameId, navigate]);
 
   const handleJoin = (side) => {
     socket.emit('join side', side);
@@ -48,20 +47,8 @@ const Game = ({ socket, appState }) => {
 
   return (
     <GameContainer>
-      <PlayerContainer>
-        {gameId}
-        <div>
-          {turn === 'attacker' ? '(Turn)' : null}
-          Attacker:{attacker?.username || defender?.userId === userId || <Button onClick={() => handleJoin('attacker')}>Join</Button>}
-          {attacker?.userId === userId && <Button>Leave</Button>}
-        </div>
-        <div>vs.</div>
-        <div>
-          {turn === 'defender' ? '(Turn)' : null}
-          Defender:{defender?.username || attacker?.userId === userId || <Button onClick={() => handleJoin('defender')}>Join</Button>}
-          {defender?.userId === userId && <Button>Leave</Button>}
-        </div>
-      </PlayerContainer>
+      <div>{gameId}</div>
+      <PlayerContainer />
       <Board
         amDefender={defender?.userId === userId}
         turn={turn}

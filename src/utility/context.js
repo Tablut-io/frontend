@@ -1,3 +1,4 @@
 import { createContext } from 'react';
-const Context = createContext();
-export default Context;
+const AppContext = createContext();
+const GameContext = createContext();
+export { AppContext, GameContext };

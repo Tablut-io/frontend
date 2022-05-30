@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
 // Context
-import Context from './utility/context';
+import { AppContext } from './utility/context';
 // Pages Components
 import About from './pages/About';
 import Game from './pages/Game';
@@ -37,7 +37,7 @@ const Main = styled.main`
 `
 
 function App() {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [appState, dispatch] = useReducer(reducer, initialState);
   useEffect(() => {
     socket.on('session', (sessionInfo) => {
       const sessionId = sessionInfo.sessionId;
@@ -46,28 +46,29 @@ function App() {
       dispatch({ type: SETSESSIONINFO, sessionInfo});
     });
   });
+
   return (
-    <ThemeProvider theme={state}>
+    <ThemeProvider theme={appState}>
       <GlobalStyle />
       <BrowserRouter>
         <NavigationBar
           connected={socket.connected}
           dispatch={dispatch}
-          username={state.sessionInfo?.username}
+          username={appState.sessionInfo?.username}
         />
         <Main>
           <Routes>
             <Route path='/' element={<Landing dispatch={dispatch} socket={socket} />} />
             <Route path='/about' element={<About />} />
             <Route path='/rules' element={<Rules />} />
-            <Route path="/game" element={<Game appState={state} socket={socket} dispatch={dispatch} />} />
+            <Route path="/game" element={<Game appState={appState} socket={socket} dispatch={dispatch} />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </Main>
-        <Context.Provider value={[state, dispatch]}>
-          {state.showEnterUsername && <EnterUsername socket={socket} dispatch={dispatch} />}
-          {state.showJoinGame && <JoinGame dispatch={dispatch} />}
-        </Context.Provider>
+        <AppContext.Provider value={[appState, dispatch]}>
+          {appState.showEnterUsername && <EnterUsername socket={socket} dispatch={dispatch} />}
+          {appState.showJoinGame && <JoinGame dispatch={dispatch} />}
+        </AppContext.Provider>
       </BrowserRouter>
     </ThemeProvider>
   );
