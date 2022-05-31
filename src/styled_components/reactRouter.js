@@ -2,8 +2,7 @@ import { Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 const PageLink = styled(Link)`
-  background: ${props => props.primary ? "gray" : "white"};
-  color: ${props => props.primary ? "white" : "gray"};
+  color: ${props => props.primary ? 'gray' : 'white'};
   font-size: 1em;
   margin: 0.5em;
   padding: 0.25em 1em;

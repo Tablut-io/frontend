@@ -15,14 +15,15 @@ import Landing from './pages/Landing';
 import Rules from './pages/Rules';
 // Components
 import NavigationBar from './components/NavigationBar';
-import { SETSESSIONINFO } from './utility/actionConstants';
 // modals
+import CreateGame from './modals/CreateGame';
 import EnterUsername from './modals/EnterUsername';
 import JoinGame from './modals/JoinGame';
 // socketio
 import socket from './utility/socket';
 // reducer
 import { initialState, reducer } from './utility/reducer';
+import { SETSESSIONINFO } from './utility/actionConstants';
 
 // Styling
 import GlobalStyle from './styled_components/GlobalStyle';
@@ -36,8 +37,9 @@ const Main = styled.main`
   border: 1px solid black;
 `
 
-function App() {
+const App = () => {
   const [appState, dispatch] = useReducer(reducer, initialState);
+
   useEffect(() => {
     socket.on('session', (sessionInfo) => {
       const sessionId = sessionInfo.sessionId;
@@ -61,17 +63,21 @@ function App() {
             <Route path='/' element={<Landing dispatch={dispatch} socket={socket} />} />
             <Route path='/about' element={<About />} />
             <Route path='/rules' element={<Rules />} />
-            <Route path="/game" element={<Game appState={appState} socket={socket} dispatch={dispatch} />} />
-            <Route path="*" element={<Navigate to="/" replace />} />
+            <Route
+              path='/game'
+              element={<Game appState={appState} socket={socket} dispatch={dispatch} />}
+            />
+            <Route path='*' element={<Navigate to='/' replace />} />
           </Routes>
         </Main>
         <AppContext.Provider value={[appState, dispatch]}>
           {appState.showEnterUsername && <EnterUsername socket={socket} dispatch={dispatch} />}
+          {appState.showGameSetup && <CreateGame socket={socket} dispatch={dispatch} />}
           {appState.showJoinGame && <JoinGame dispatch={dispatch} />}
         </AppContext.Provider>
       </BrowserRouter>
     </ThemeProvider>
   );
-}
+};
 
 export default App;

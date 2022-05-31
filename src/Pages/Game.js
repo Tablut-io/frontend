@@ -36,10 +36,6 @@ const Game = ({ socket, appState }) => {
     socket.emit('join game', gameId);
   }, [socket, gameId, navigate]);
 
-  const handleJoin = (side) => {
-    socket.emit('join side', side);
-  };
-
   let startPos;
   const handleDrop = (endPos) => {
     socket.emit('make move', { startPos, endPos });
@@ -47,7 +43,8 @@ const Game = ({ socket, appState }) => {
 
   return (
     <GameContainer>
-      <div>{gameId}</div>
+      <div>Game ID: {gameId}</div>
+      <div>{attacker?.username} vs. {defender?.username}</div>
       <PlayerContainer />
       <Board
         amDefender={defender?.userId === userId}

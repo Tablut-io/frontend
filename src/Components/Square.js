@@ -33,7 +33,12 @@ const Square = ({ position, piece, onDragStart, onDrop, turn, amDefender }) => {
     onDrop(position);
   }
   return (
-    <SquareContainer onDragOver={(event) => event.preventDefault()} onDrop={handleDrop} row={row+1} column={column+2}>
+    <SquareContainer
+      onDragOver={(event) => event.preventDefault()}
+      onDrop={handleDrop}
+      row={row+1}
+      column={column+1}
+    >
       {piece &&
         <Piece
           piece={piece}

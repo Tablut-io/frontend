@@ -5,8 +5,8 @@ import Square from './Square';
 
 const StyledBoard = styled.div`
   display: grid;
-  grid-template-columns: repeat(11, auto) 8%;
-  grid-template-rows: repeat(11, auto) 8%;
+  grid-template-columns: repeat(10, auto);
+  grid-template-rows: repeat(10, auto);
   background-color: gray;
   aspect-ratio: 1;
   max-width: 600px;

@@ -2,12 +2,13 @@ import {
   CLOSEMODAL,
   SETSESSIONINFO,
   SHOWENTERUSERNAME,
+  SHOWGAMESETUP,
   SHOWJOINGAME,
   TOGGLETHEME
 } from '../utility/actionConstants';
 
 const initialState = {
-  lightTheme: true,
+  lightTheme: false,
   showEnterUsername: false,
   showGameSetup: false,
   showJoinGame: false,
@@ -20,6 +21,9 @@ const reducer = (state, action) => {
       newState.showEnterUsername = false;
       newState.showGameSetup = false;
       newState.showJoinGame = false;
+      break;
+    case SHOWGAMESETUP:
+      newState.showGameSetup = true;
       break;
     case SETSESSIONINFO:
       newState.sessionInfo = action.sessionInfo;

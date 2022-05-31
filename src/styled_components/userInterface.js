@@ -1,16 +1,19 @@
 import styled from 'styled-components';
 
 const Button = styled.button`
-  background: ${props => props.primary ? "gray" : "white"};
-  color: ${props => props.primary ? "white" : "gray"};
+  background: ${props => props.primary ? 'rgb(127, 166, 80, 0.8)' : 'white'};
+  color: ${props => props.primary ? 'white' : 'gray'};
   font-size: 1em;
   margin: 0.5em;
   padding: 0.25em 1em;
-  border: 2px solid gray;
   border-radius: 3px;
   cursor: pointer;
   width: fit-content;
   text-decoration: ${props => props.underline ? 'underline' : 'none'};
+  &:hover {
+    background: 'rgb(127, 166, 80, 1)';
+    box-shadow: 0 5px 15px rgba(145, 92, 182, .4);
+  }
 `;
 
 const CloseIcon = styled.div`
@@ -30,7 +33,7 @@ const CloseIcon = styled.div`
     content: ' ';
     height: 33px;
     width: 2px;
-    background-color: #333;
+    background-color: ${props => props.theme.lightTheme ? 'black' : 'white'};
   }
   &:before {
     transform: rotate(45deg);

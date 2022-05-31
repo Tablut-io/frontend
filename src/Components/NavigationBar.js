@@ -4,8 +4,6 @@ import styled from 'styled-components';
 
 import Menu from './Menu';
 import { PageLink } from '../styled_components/reactRouter';
-import { Button, ThemeToggle } from '../styled_components/userInterface';
-import { SHOWENTERUSERNAME, TOGGLETHEME } from '../utility/actionConstants';
 import socket from '../utility/socket';
 
 const Header = styled.header`
@@ -41,15 +39,14 @@ const MenuIcon = styled.div`
   };
 `;
 const HomeLink = styled(Link)`
-  background: ${props => props.primary ? "gray" : "white"};
-  color: ${props => props.primary ? "white" : "gray"};
-  font-size: 1em;
+  background: 'gray';
+  color: ${props => props.primary ? 'white' : 'white'};
+  font-size: 1.5em;
   margin: 0.5em;
   padding: 0.25em 1em;
-  border: 2px solid gray;
-  border-radius: 3px;
   cursor: pointer;
   width: fit-content;
+  border-radius: 10px;
   text-decoration: ${props => props.underline ? 'underline' : 'none'};
   @media screen and (max-width: 400px) {
     display: none;
@@ -69,12 +66,10 @@ const NavigationBar = ({ username, dispatch }) => {
       <HomeLink to="/">Tablut.io</HomeLink>
       {!socket.connected && <div>SERVER OFFLINE</div>}
       <RightContainer>
-        <ThemeToggle onClick={() => dispatch({type: TOGGLETHEME })} />
         <DesktopOnly>
           <PageLink to="/about">About</PageLink>
           <PageLink to="/rules">Rules</PageLink>
         </DesktopOnly>
-        {<Button onClick={() => dispatch({type: SHOWENTERUSERNAME })}>{username}</Button>}
       </RightContainer>
       {showMenu && <Menu onClose={() => setShowMenu(false)}/>}
     </Header>

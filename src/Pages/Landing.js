@@ -1,23 +1,18 @@
-import { useNavigate } from 'react-router-dom';
-
 import { Button } from '../styled_components/userInterface';
-import { SHOWJOINGAME } from '../utility/actionConstants';
+import { SHOWGAMESETUP, SHOWJOINGAME } from '../utility/actionConstants';
 
-const Landing = ({ dispatch, socket }) => {
-  const navigate = useNavigate();
+const Landing = ({ dispatch }) => {
   const handleJoinGame = () => {
     dispatch({ type: SHOWJOINGAME });
   };
   const handleCreateGame = () => {
-    socket.emit('initialize game');
-    socket.on('game initialized', (gameId) => {
-      navigate(`/game`, { state: { gameId }});
-    });
+    dispatch({ type: SHOWGAMESETUP });
   };
+
   return (
     <>
-      <Button onClick={handleCreateGame}>Create game</Button>
-      <Button onClick={handleJoinGame}>Join game</Button>
+      <Button primary onClick={handleCreateGame}>Create game</Button>
+      <Button onClick={handleJoinGame}>Join game by ID</Button>
     </>
   )
 };
