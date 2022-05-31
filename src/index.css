@@ -1,3 +1,8 @@
+@font-face {
+  font-family: Norse-KaWl;
+  src: url("./norse-font/Norse-KaWl.otf") format("opentype");;
+}
+
 body {
-  font-family: verdana, sans-serif;
+  font-family: Norse-Kawl;
 }
