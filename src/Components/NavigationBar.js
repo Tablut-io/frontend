@@ -7,8 +7,11 @@ import { PageLink } from '../styled_components/reactRouter';
 import socket from '../utility/socket';
 
 const Header = styled.header`
-  background-color: gray;
-  height: 4em;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  background-color: rgb(0, 50, 0);
+  height: 4rem;
   display: flex;
   justify-content: space-between;
   align-items: center;

@@ -7,13 +7,13 @@ import { AppContext} from '../utility/context';
 
 const ModalContent = styled.div`
   position:fixed;
-  background: white;
+  background: gray;
   width: 80%;
   height: auto;
   top:50%;
   left:50%;
   transform: translate(-50%,-50%);
-  padding: 5px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
 `

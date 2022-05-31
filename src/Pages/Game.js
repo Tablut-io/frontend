@@ -14,7 +14,7 @@ const GameContainer = styled.div`
 // component responsible for managing the socket
 // from here data received from the socket can send updates to respective components
 // from here data will be sent over the socket to the server
-const Game = ({ socket, appState }) => {
+const Game = ({ dispatch, socket, appState }) => {
   const navigate = useNavigate()
   const userId = appState.sessionInfo?.userId;
   const { state } = useLocation();
@@ -32,8 +32,11 @@ const Game = ({ socket, appState }) => {
       setDefender(defender);
       setTurn(turn);
     });
-    socket.on('game not found', () => navigate('/'));
-    socket.emit('join game', gameId);
+    socket.on('game not found', () => {
+      navigate('/');
+      // dispatch()
+    });
+    socket.emit('join game', { gameId });
   }, [socket, gameId, navigate]);
 
   let startPos;

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const Button = styled.button`
   background: ${props => props.primary ? 'rgb(127, 166, 80, 0.8)' : 'white'};
   color: ${props => props.primary ? 'white' : 'gray'};
-  font-size: 1em;
+  font-size: ${props => props.large ? '1.4em' : '1em'};
   margin: 0.5em;
   padding: 0.25em 1em;
   border-radius: 3px;

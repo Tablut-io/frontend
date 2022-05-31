@@ -41,10 +41,9 @@ const CreateGame = ({ dispatch, socket }) => {
     <Modal>
       <Form onSubmit={handleSubmit}>
         <Label>
-          Who is this?
           <TextInput
             autoFocus
-            placeholder=''
+            placeholder='username'
             value={username}
             onChange={handleUsernameChange}
           />

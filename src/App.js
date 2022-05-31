@@ -28,13 +28,14 @@ import { SETSESSIONINFO } from './utility/actionConstants';
 // Styling
 import GlobalStyle from './styled_components/GlobalStyle';
 const Main = styled.main`
-  margin: 0 auto;
+  margin: 4rem auto;
   padding: 1em;
   display: flex;
   flex-direction: column;
-  max-width: 1280px;
+  max-width: 1052px;
   min-width: 300px;
-  border: 1px solid black;
+  height: 100vh;
+  background-color: rgb(40, 40, 40);
 `
 
 const App = () => {
