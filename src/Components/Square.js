@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+const restrictedSquares = [[0, 0], [0, 10], [10, 0], [10, 10], [5, 5]];
+
 const SquareContainer = styled.div`
   display: flex;
   align-items: center;
@@ -9,18 +11,22 @@ const SquareContainer = styled.div`
   height: 100%;
   grid-column: ${props => props.column};
   grid-row: ${props => props.row};
-  background-color: gray;
+  background-color: ${({restricted}) => restricted ? 'green' : '#966F33'}
 `
 const Piece = styled.div`
   width: 80%;
   height: 80%;
   border-radius: 8px;
   background-color: ${({piece}) => piece === 'attacker' ? 'black' : 'white'};
+  background-color: ${({piece}) => piece === 'king' ? 'gold' : ''};
   cursor: ${({draggable}) => draggable ? 'pointer': 'default'};
 `
 
 const Square = ({ position, piece, onDragStart, onDrop, turn, amDefender }) => {
   const [row, column] = position;
+  const restricted = restrictedSquares.some(([restrictedRow, restrictedCol]) => {
+    return restrictedRow === row && restrictedCol === column;
+  });
 
   let draggable;
   if (amDefender) {
@@ -38,6 +44,7 @@ const Square = ({ position, piece, onDragStart, onDrop, turn, amDefender }) => {
       onDrop={handleDrop}
       row={row+1}
       column={column+1}
+      restricted={restricted}
     >
       {piece &&
         <Piece

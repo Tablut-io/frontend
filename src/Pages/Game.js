@@ -11,6 +11,10 @@ import PlayerContainer from '../components/PlayerContainer';
 // styled components
 const GameContainer = styled.div`
 `
+
+const Message = styled.div`
+  color: red;
+`
 // component responsible for managing the socket
 // from here data received from the socket can send updates to respective components
 // from here data will be sent over the socket to the server
@@ -24,6 +28,7 @@ const Game = ({ dispatch, socket, appState }) => {
   const [attacker, setAttacker] = useState(null);
   const [defender, setDefender] = useState(null);
   const [turn, setTurn] = useState(null);
+  const [message, setMessage] = useState(null);
 
   useEffect(() => {
     socket.on('updated game state', ({ positions, turn, attacker, defender }) => {
@@ -31,10 +36,13 @@ const Game = ({ dispatch, socket, appState }) => {
       setAttacker(attacker);
       setDefender(defender);
       setTurn(turn);
+      setMessage(null);
+    });
+    socket.on('message', (message) => {
+      setMessage(message)
     });
     socket.on('game not found', () => {
       navigate('/');
-      // dispatch()
     });
     socket.emit('join game', { gameId });
   }, [socket, gameId, navigate]);
@@ -48,6 +56,7 @@ const Game = ({ dispatch, socket, appState }) => {
     <GameContainer>
       <div>Game ID: {gameId}</div>
       <div>{attacker?.username} vs. {defender?.username}</div>
+      {message && <Message>{message}</Message>}
       <PlayerContainer />
       <Board
         amDefender={defender?.userId === userId}

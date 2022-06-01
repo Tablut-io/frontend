@@ -7,7 +7,7 @@ const StyledBoard = styled.div`
   display: grid;
   grid-template-columns: repeat(10, auto);
   grid-template-rows: repeat(10, auto);
-  background-color: gray;
+  background-color: #966F33;
   aspect-ratio: 1;
   max-width: 600px;
 `

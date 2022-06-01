@@ -14,7 +14,7 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
 `
-const sideOptions = ['random', 'attacker', 'defender'];
+const sideOptions = ['attacker', 'defender'];
 
 const CreateGame = ({ dispatch, socket }) => {
   const navigate = useNavigate();
