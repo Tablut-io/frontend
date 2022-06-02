@@ -7,8 +7,9 @@ import { AppContext} from '../utility/context';
 
 const ModalContent = styled.div`
   position:fixed;
-  background: gray;
-  width: 80%;
+  background: dimgray;
+  max-width: 400px;
+  width: 100%;
   height: auto;
   top:50%;
   left:50%;

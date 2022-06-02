@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Modal from './Modal';
-import { Label, Submit, TextInput } from '../styled_components/form';
+import { Form, Submit, TextInput } from '../styled_components/form';
 import { CLOSEMODAL } from '../utility/actionConstants';
 
 const JoinGame = ({ dispatch }) => {
@@ -18,14 +18,10 @@ const JoinGame = ({ dispatch }) => {
   }
   return (
     <Modal>
-      <h1>Join game</h1>
-      <form onSubmit={handleSubmit}>
-        <Label>
-          Enter Game Id
-          <TextInput value={gameId} onChange={handleChange} />
-        </Label>
+      <Form onSubmit={handleSubmit}>
+        <TextInput value={gameId} onChange={handleChange} placeholder='Enter Game Id' />
         <Submit value="Join" />
-      </form>
+      </Form>
     </Modal>
   )
 };

@@ -11,6 +11,9 @@ import PlayerContainer from '../components/PlayerContainer';
 // styled components
 const GameContainer = styled.div`
 `
+const GameId = styled.div`
+  font-family: sans-serif;
+`
 
 const Message = styled.div`
   color: red;
@@ -18,7 +21,7 @@ const Message = styled.div`
 // component responsible for managing the socket
 // from here data received from the socket can send updates to respective components
 // from here data will be sent over the socket to the server
-const Game = ({ dispatch, socket, appState }) => {
+const Game = ({ socket, appState }) => {
   const navigate = useNavigate()
   const userId = appState.sessionInfo?.userId;
   const { state } = useLocation();
@@ -54,7 +57,7 @@ const Game = ({ dispatch, socket, appState }) => {
 
   return (
     <GameContainer>
-      <div>Game ID: {gameId}</div>
+      <GameId>Game ID: {gameId}</GameId>
       <div>{attacker?.username} vs. {defender?.username}</div>
       {message && <Message>{message}</Message>}
       <PlayerContainer />

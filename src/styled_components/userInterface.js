@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const Button = styled.button`
-  background: ${props => props.primary ? 'rgb(127, 166, 80, 0.8)' : 'white'};
+  background: ${props => props.primary ? 'rgb(127, 166, 80, 0.85)' : 'rgb(255, 255, 255, 0.85)'};
   color: ${props => props.primary ? 'white' : 'gray'};
   font-size: ${props => props.large ? '1.4em' : '1em'};
   margin: 0.5em;
@@ -11,7 +11,7 @@ const Button = styled.button`
   width: fit-content;
   text-decoration: ${props => props.underline ? 'underline' : 'none'};
   &:hover {
-    background: 'rgb(127, 166, 80, 1)';
+    background: ${({primary}) => primary ? 'rgb(127, 166, 80, 1)' : 'rgb(255, 255, 255, 1)'};
     box-shadow: 0 5px 15px rgba(145, 92, 182, .4);
   }
 `;

@@ -1,19 +1,14 @@
 /* npm imports */
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
 /* end npm imports */
 
 /* internal imports */
 import Modal from './Modal';
-import { Label, TextInput, Submit } from '../styled_components/form';
+import { Form, Label, Option, Select, Submit, TextInput } from '../styled_components/form';
 import { CLOSEMODAL } from '../utility/actionConstants';
 /* end internal imports */
 
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-`
 const sideOptions = ['attacker', 'defender'];
 
 const CreateGame = ({ dispatch, socket }) => {
@@ -40,21 +35,19 @@ const CreateGame = ({ dispatch, socket }) => {
   return (
     <Modal>
       <Form onSubmit={handleSubmit}>
+        <TextInput
+          autoFocus
+          placeholder='username (leave blank for autogen)'
+          value={username}
+          onChange={handleUsernameChange}
+        />
         <Label>
-          <TextInput
-            autoFocus
-            placeholder='username'
-            value={username}
-            onChange={handleUsernameChange}
-          />
-        </Label>
-        <Label>
-          Side
-          <select value={side} onChange={handleSideChange}>
+          Side -{'>'}
+          <Select value={side} onChange={handleSideChange}>
             {sideOptions.map(option => {
-              return <option key={option} value={option}>{option}</option>
+              return <Option key={option} value={option}>{option}</Option>
             })}
-          </select>
+          </Select>
         </Label>
         <Submit value="To Valhalla!" />
       </Form>
