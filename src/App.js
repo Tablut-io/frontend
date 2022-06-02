@@ -28,7 +28,7 @@ import { SETSESSIONINFO } from './utility/actionConstants';
 // Styling
 import GlobalStyle from './styled_components/GlobalStyle';
 const Main = styled.main`
-  margin: 4rem auto;
+  margin: 3rem auto;
   padding: 1em;
   display: flex;
   flex-direction: column;

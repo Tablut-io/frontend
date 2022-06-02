@@ -39,9 +39,14 @@ const Right = styled.div`
   grid-area: right;
   padding: 10px;
 `
+const Description = styled.div`
+  font-family: sans-serif;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+`
 
-const CreateButton = styled(Button)`
-  grid-area: right;
+const WikiLink = styled.a`
+ color: yellow;
 `
 
 const Landing = ({ dispatch }) => {
@@ -58,7 +63,7 @@ const Landing = ({ dispatch }) => {
         <Board positions={positions} />
       </Left>
       <Right>
-        <H1>Play Tablut board games on Tablut.io!</H1>
+        <H1>Play Tafl board games on Tablut.io!</H1>
         <Button
           primary
           large
@@ -67,6 +72,15 @@ const Landing = ({ dispatch }) => {
           Create game
         </Button>
         <Button large onClick={handleJoinGame}>Join game by ID</Button>
+        <Description>
+          Tafl games (pronounced [tavl], also known as hnefatafl games) are a family of ancient Nordic and Celtic strategy board games played on a checkered or latticed gameboard with two armies of uneven numbers.
+        </Description>
+        <WikiLink
+          href="https://en.wikipedia.org/wiki/Tafl_games"
+          target="_blank"
+        >
+          Wikipedia Article
+        </WikiLink>
       </Right>
     </Grid>
   )

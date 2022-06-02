@@ -3,6 +3,10 @@
   src: url("./norse-font/Norse-KaWl.otf") format("opentype");;
 }
 
+html {
+  font-size: 22px;
+}
+
 body {
   font-family: Norse-Kawl;
 }

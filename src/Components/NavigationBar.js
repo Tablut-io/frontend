@@ -11,7 +11,7 @@ const Header = styled.header`
   top: 0px;
   width: 100%;
   background-color: rgb(0, 50, 0);
-  height: 4rem;
+  height: 3rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -70,7 +70,6 @@ const NavigationBar = ({ username, dispatch }) => {
       {!socket.connected && <div>SERVER OFFLINE</div>}
       <RightContainer>
         <DesktopOnly>
-          <PageLink to="/about">About</PageLink>
           <PageLink to="/rules">Rules</PageLink>
         </DesktopOnly>
       </RightContainer>
