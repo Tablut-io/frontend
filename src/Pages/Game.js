@@ -6,6 +6,7 @@ import styled from 'styled-components';
 // internal imports
 import Board from '../components/Board';
 import PlayerContainer from '../components/PlayerContainer';
+import MoveRecord from '../components/MoveRecord';
 
 
 // styled components
@@ -32,14 +33,16 @@ const Game = ({ socket, appState }) => {
   const [defender, setDefender] = useState(null);
   const [turn, setTurn] = useState(null);
   const [message, setMessage] = useState(null);
+  const [moves, setMoves] = useState([]);
 
   useEffect(() => {
-    socket.on('updated game state', ({ positions, turn, attacker, defender }) => {
+    socket.on('updated game state', ({ moves, positions, turn, attacker, defender }) => {
       setPositions(positions);
       setAttacker(attacker);
       setDefender(defender);
       setTurn(turn);
       setMessage(null);
+      setMoves(moves);
     });
     socket.on('message', (message) => {
       setMessage(message)
@@ -68,6 +71,7 @@ const Game = ({ socket, appState }) => {
         onDragStart={(position) => startPos = position}
         onDrop={handleDrop}
       />
+      <MoveRecord moves={moves} />
     </GameContainer>
   );
 }
