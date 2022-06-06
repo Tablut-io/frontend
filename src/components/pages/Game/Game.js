@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import Board from './Board';
 import PlayerContainer from './PlayerContainer';
 import MoveRecord from './MoveRecord';
-
+import Messages from './Messages';
 
 // styled components
 const GameContainer = styled.div`
@@ -16,7 +16,7 @@ const GameId = styled.div`
   font-family: sans-serif;
 `
 
-const Message = styled.div`
+const ServerMessage = styled.div`
   color: red;
 `
 // component responsible for managing the socket
@@ -32,8 +32,9 @@ const Game = ({ socket, appState }) => {
   const [attacker, setAttacker] = useState(null);
   const [defender, setDefender] = useState(null);
   const [turn, setTurn] = useState(null);
-  const [message, setMessage] = useState(null);
+  const [serverMessage, setMessage] = useState(null);
   const [moves, setMoves] = useState([]);
+  const [messages, setMessages] = useState([]);
 
   useEffect(() => {
     socket.on('updated game state', ({ moves, positions, turn, attacker, defender }) => {
@@ -44,11 +45,18 @@ const Game = ({ socket, appState }) => {
       setMessage(null);
       setMoves(moves);
     });
-    socket.on('message', (message) => {
-      setMessage(message)
+    socket.on('server message', (message) => {
+      setMessage(message);
     });
     socket.on('game not found', () => {
       navigate('/');
+    });
+    socket.on('player message', (message) => {
+      setMessages((prev) => {
+        const newMessages = prev.slice();
+        newMessages.push(message);
+        return newMessages;
+      });
     });
     socket.emit('join game', { gameId });
   }, [socket, gameId, navigate]);
@@ -58,11 +66,15 @@ const Game = ({ socket, appState }) => {
     socket.emit('make move', { startPos, endPos });
   };
 
+  const handleSend = (message) => {
+    socket.emit('player message', message);
+  };
+
   return (
     <GameContainer>
       <GameId>Game ID: {gameId}</GameId>
       <div>{attacker?.username} vs. {defender?.username}</div>
-      {message && <Message>{message}</Message>}
+      {serverMessage && <ServerMessage>{serverMessage}</ServerMessage>}
       <PlayerContainer />
       <Board
         amDefender={defender?.userId === userId}
@@ -72,6 +84,7 @@ const Game = ({ socket, appState }) => {
         onDrop={handleDrop}
       />
       <MoveRecord moves={moves} />
+      <Messages onSend={handleSend} messages={messages} />
     </GameContainer>
   );
 }

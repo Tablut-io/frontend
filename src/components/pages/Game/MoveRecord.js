@@ -4,8 +4,8 @@ import MovePair from './MovePair';
 
 const OrderedList = styled.ol`
   background-color: white;
-  min-width: 200px;
-  min-height: 300px;
+  min-width: 50px;
+  min-height: 50px;
 `
 
 const formatMoves = (moves) => {
@@ -20,7 +20,6 @@ const formatMoves = (moves) => {
     }
   }
   if (currPair.length > 0) movePairs.push(currPair);
-  console.log('movepairs', movePairs);
   return movePairs;
 }
 
