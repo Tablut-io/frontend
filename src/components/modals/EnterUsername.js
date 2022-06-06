@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import Modal from './Modal';
-import { CLOSEMODAL } from '../utility/actionConstants';
+import { CLOSEMODAL } from '../../utility/actionConstants';
 // styled components
 import { TextInput, Submit } from '../styled_components/form';
 

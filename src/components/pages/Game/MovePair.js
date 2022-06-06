@@ -5,9 +5,6 @@ const ListItem = styled.li`
   display: flex;
 `
 
-const Move = styled.div`
-`
-
 const formatPosition = (position) => {
   return String.fromCharCode(position[0] + 97) + position[1];
 };

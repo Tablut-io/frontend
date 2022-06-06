@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import Modal from './Modal';
 import { Form, Submit, TextInput } from '../styled_components/form';
-import { CLOSEMODAL } from '../utility/actionConstants';
+import { CLOSEMODAL } from '../../utility/actionConstants';
 
 const JoinGame = ({ dispatch }) => {
   const navigate = useNavigate();

@@ -1,9 +1,9 @@
 import { useContext } from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
-import { CLOSEMODAL } from '../utility/actionConstants';
+import { CLOSEMODAL } from '../../utility/actionConstants';
 
-import { AppContext} from '../utility/context';
+import { AppContext} from '../../utility/context';
 
 const ModalContent = styled.div`
   position:fixed;

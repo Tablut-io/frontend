@@ -9,16 +9,16 @@ import styled, { ThemeProvider } from 'styled-components';
 // Context
 import { AppContext } from './utility/context';
 // Pages Components
-import About from './pages/About';
-import Game from './pages/Game';
-import Landing from './pages/Landing';
-import Rules from './pages/Rules';
+import About from './components/pages/About/About';
+import Game from './components/pages/Game/Game';
+import Landing from './components/pages/Landing/Landing';
+import Rules from './components/pages/Rules/Rules';
 // Components
-import NavigationBar from './components/NavigationBar';
+import NavigationBar from './components/navigation/NavigationBar';
 // modals
-import CreateGame from './modals/CreateGame';
-import EnterUsername from './modals/EnterUsername';
-import JoinGame from './modals/JoinGame';
+import CreateGame from './components/modals/CreateGame';
+import EnterUsername from './components/modals/EnterUsername';
+import JoinGame from './components/modals/JoinGame';
 // socketio
 import socket from './utility/socket';
 // reducer
@@ -26,7 +26,7 @@ import { initialState, reducer } from './utility/reducer';
 import { SETSESSIONINFO } from './utility/actionConstants';
 
 // Styling
-import GlobalStyle from './styled_components/GlobalStyle';
+import GlobalStyle from './components/styled_components/GlobalStyle';
 const Main = styled.main`
   margin: 3rem auto;
   padding: 1em;

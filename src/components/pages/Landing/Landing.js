@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-import Board from '../components/Board';
-import { Button } from '../styled_components/userInterface';
-import { SHOWGAMESETUP, SHOWJOINGAME } from '../utility/actionConstants';
+import Board from '../Game/Board';
+import { Button } from '../../styled_components/userInterface';
+import { SHOWGAMESETUP, SHOWJOINGAME } from '../../../utility/actionConstants';
 
 const ATT = 'attacker';
 const DEF = 'defender';

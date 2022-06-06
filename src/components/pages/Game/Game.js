@@ -4,9 +4,9 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 // internal imports
-import Board from '../components/Board';
-import PlayerContainer from '../components/PlayerContainer';
-import MoveRecord from '../components/MoveRecord';
+import Board from './Board';
+import PlayerContainer from './PlayerContainer';
+import MoveRecord from './MoveRecord';
 
 
 // styled components

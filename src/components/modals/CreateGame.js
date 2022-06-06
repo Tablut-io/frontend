@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 /* internal imports */
 import Modal from './Modal';
 import { Form, Label, Option, Select, Submit, TextInput } from '../styled_components/form';
-import { CLOSEMODAL } from '../utility/actionConstants';
+import { CLOSEMODAL } from '../../utility/actionConstants';
 /* end internal imports */
 
 const sideOptions = ['attacker', 'defender'];

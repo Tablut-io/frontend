@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import Menu from './Menu';
 import { PageLink } from '../styled_components/reactRouter';
-import socket from '../utility/socket';
+import socket from '../../utility/socket';
 
 const Header = styled.header`
   position: fixed;
