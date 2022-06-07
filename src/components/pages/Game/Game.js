@@ -27,6 +27,7 @@ const Game = ({ socket, appState }) => {
   const userId = appState.sessionInfo?.userId;
   const { state } = useLocation();
   const gameId = state?.gameId;
+  const username = state?.username;
 
   const [positions, setPositions] = useState(Array.from(Array(11), () => new Array(11).fill(null)));
   const [attacker, setAttacker] = useState(null);
@@ -58,8 +59,8 @@ const Game = ({ socket, appState }) => {
         return newMessages;
       });
     });
-    socket.emit('join game', { gameId });
-  }, [socket, gameId, navigate]);
+    socket.emit('join game', { gameId, username });
+  }, [socket, gameId, username, navigate]);
 
   let startPos;
   const handleDrop = (endPos) => {

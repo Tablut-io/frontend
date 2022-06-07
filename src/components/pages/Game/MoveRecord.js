@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import MovePair from './MovePair';
 
 const OrderedList = styled.ol`
+  font-family: sans-serif;
   background-color: white;
   min-width: 50px;
   min-height: 50px;
@@ -29,7 +30,7 @@ const MoveRecord = ({ moves }) => {
   return (
     <OrderedList>
       {movePairs.map((pair, idx) => {
-        return <MovePair key={idx} idx={idx} pair={pair} />
+        return <MovePair key={idx} idx={idx + 1} pair={pair} />
       })}
     </OrderedList>
   )

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 const MessageContainer = styled.div`
+  font-family: sans-serif;
   background-color: white;
   min-width: 100px;
   min-height: 100px;
@@ -41,7 +42,6 @@ const Messages = ({ messages, onSend }) => {
 
   return (
     <MessageContainer>
-      messages
       <OrderedList>
         {messages.map((message, i) => {
           return (<Message key={i}>
