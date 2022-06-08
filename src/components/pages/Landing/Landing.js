@@ -21,6 +21,11 @@ const positions = [
   [null, null, null, ATT, ATT, ATT, ATT, ATT, null, null, null],
 ];
 
+const description = 'Tafl games are a family of ancient Nordic and Celtic strategy board games. '
+  + 'The rules for most were lost. However, the rules for tablut (a tafl variant) were written '
+  + 'down by the Swedish naturalist Linnaeus in 1732. The goal of this site is to create a place '
+  + 'for people to play the various variations of these games.';
+
 const Grid = styled.div`
   display: grid;
   grid-template-columns: 50% 50%;
@@ -62,7 +67,7 @@ const Landing = ({ dispatch }) => {
         <Board positions={positions} />
       </Left>
       <Right>
-        <H1>Play Tafl board games on Tablut.io!</H1>
+        <H1>Play tafl games on Tablut.io!</H1>
         <Button
           primary
           large
@@ -71,9 +76,7 @@ const Landing = ({ dispatch }) => {
           Create game
         </Button>
         <Button large onClick={handleJoinGame}>Join game by ID</Button>
-        <Description>
-          Tafl games (pronounced [tavl], also known as hnefatafl games) are a family of ancient Nordic and Celtic strategy board games played on a checkered or latticed gameboard with two armies of uneven numbers.
-        </Description>
+        <Description>{description}</Description>
         <WikiLink
           href="https://en.wikipedia.org/wiki/Tafl_games"
           target="_blank"

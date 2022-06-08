@@ -19,6 +19,7 @@ import NavigationBar from './components/navigation/NavigationBar';
 import CreateGame from './components/modals/CreateGame';
 import EnterUsername from './components/modals/EnterUsername';
 import JoinGame from './components/modals/JoinGame';
+import Message from './components/modals/Message';
 // socketio
 import socket from './utility/socket';
 // reducer constants
@@ -29,7 +30,6 @@ import {
   SHOWGAMESETUP,
   SHOWJOINGAME,
   SHOWMESSAGE,
-  TOGGLETHEME
 } from './utility/actionConstants';
 
 // Styling
@@ -45,12 +45,12 @@ const Main = styled.main`
   background-color: rgb(40, 40, 40);
 `
 
-// reducer
+// reducer and initial state
 const initialState = {
-  lightTheme: false,
   showEnterUsername: false,
   showGameSetup: false,
   showJoinGame: false,
+  showMessage: false,
   sessionInfo: null,
 };
 const reducer = (state, action) => {
@@ -60,6 +60,7 @@ const reducer = (state, action) => {
       newState.showEnterUsername = false;
       newState.showGameSetup = false;
       newState.showJoinGame = false;
+      newState.showMessage = false;
       break;
     case SHOWGAMESETUP:
       newState.showGameSetup = true;
@@ -76,9 +77,6 @@ const reducer = (state, action) => {
     case SHOWMESSAGE:
       newState.showMessage = true;
       newState.message = action.message
-      break;
-    case TOGGLETHEME:
-      newState.lightTheme = !newState.lightTheme;
       break;
     default:
       throw new Error('action type not found');
@@ -123,6 +121,7 @@ const App = () => {
           {appState.showEnterUsername && <EnterUsername socket={socket} dispatch={dispatch} />}
           {appState.showGameSetup && <CreateGame socket={socket} dispatch={dispatch} />}
           {appState.showJoinGame && <JoinGame dispatch={dispatch} />}
+          {appState.showMessage && <Message message={appState.message} />}
         </AppContext.Provider>
       </BrowserRouter>
     </ThemeProvider>

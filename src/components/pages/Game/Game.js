@@ -8,6 +8,7 @@ import Board from './Board';
 import PlayerContainer from './PlayerContainer';
 import MoveRecord from './MoveRecord';
 import Messages from './Messages';
+import { SHOWMESSAGE } from '../../../utility/actionConstants';
 
 // styled components
 const GameContainer = styled.div`
@@ -28,7 +29,7 @@ const myTurn = (myUserId, attacker, defender, turn) => {
 // component responsible for managing the socket
 // from here data received from the socket can send updates to respective components
 // from here data will be sent over the socket to the server
-const Game = ({ socket, appState }) => {
+const Game = ({ appState, dispatch, socket }) => {
   const navigate = useNavigate()
   const userId = appState.sessionInfo?.userId;
   const { state } = useLocation();
@@ -65,8 +66,12 @@ const Game = ({ socket, appState }) => {
         return newMessages;
       });
     });
+    socket.on('cannot join', (message) => {
+      dispatch({ type: SHOWMESSAGE, message });
+      navigate('/');
+    });
     socket.emit('join game', { gameId, username });
-  }, [socket, gameId, username, navigate]);
+  }, [dispatch, gameId, navigate, socket, username]);
 
   let startPos;
   const handleDrop = (endPos) => {
