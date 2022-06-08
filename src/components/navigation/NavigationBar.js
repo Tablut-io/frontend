@@ -42,9 +42,10 @@ const MenuIcon = styled.div`
   };
 `;
 const HomeLink = styled(Link)`
+  font-family: norse-kawl;
   background: 'gray';
   color: ${props => props.primary ? 'white' : 'white'};
-  font-size: 1.5em;
+  font-size: 2.5rem;
   margin: 0.5em;
   padding: 0.25em 1em;
   cursor: pointer;

@@ -49,7 +49,7 @@ const CreateGame = ({ dispatch, socket }) => {
             })}
           </Select>
         </Label>
-        <Submit value="To Valhalla!" />
+        <Submit value="Create" />
       </Form>
     </Modal>
   )

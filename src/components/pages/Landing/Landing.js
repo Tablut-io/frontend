@@ -27,7 +27,7 @@ const Grid = styled.div`
   grid-template-areas: "left right";
 `
 const H1 = styled.h1`
-  font-size: 36px;
+  font-size: 28px;
   margin-bottom: 2rem;
 `
 const Left = styled.div`
@@ -40,7 +40,6 @@ const Right = styled.div`
   padding: 10px;
 `
 const Description = styled.div`
-  font-family: sans-serif;
   margin-top: 2rem;
   margin-bottom: 2rem;
 `
