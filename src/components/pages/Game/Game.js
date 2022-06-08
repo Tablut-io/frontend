@@ -19,6 +19,12 @@ const GameId = styled.div`
 const ServerMessage = styled.div`
   color: red;
 `
+// helper functions
+const myTurn = (myUserId, attacker, defender, turn) => {
+  const movingPlayerId = turn === 'defender' ? defender?.userId : attacker?.userId;
+  return myUserId === movingPlayerId;
+};
+
 // component responsible for managing the socket
 // from here data received from the socket can send updates to respective components
 // from here data will be sent over the socket to the server
@@ -76,6 +82,9 @@ const Game = ({ socket, appState }) => {
       <GameId>Game ID: {gameId}</GameId>
       <div>{attacker?.username} vs. {defender?.username}</div>
       {serverMessage && <ServerMessage>{serverMessage}</ServerMessage>}
+      {myTurn(userId, attacker, defender, turn) &&
+        <div>Your turn</div>
+      }
       <PlayerContainer />
       <Board
         amDefender={defender?.userId === userId}

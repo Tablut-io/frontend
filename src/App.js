@@ -21,9 +21,16 @@ import EnterUsername from './components/modals/EnterUsername';
 import JoinGame from './components/modals/JoinGame';
 // socketio
 import socket from './utility/socket';
-// reducer
-import { initialState, reducer } from './utility/reducer';
-import { SETSESSIONINFO } from './utility/actionConstants';
+// reducer constants
+import {
+  CLOSEMODAL,
+  SETSESSIONINFO,
+  SHOWENTERUSERNAME,
+  SHOWGAMESETUP,
+  SHOWJOINGAME,
+  SHOWMESSAGE,
+  TOGGLETHEME
+} from './utility/actionConstants';
 
 // Styling
 import GlobalStyle from './components/styled_components/GlobalStyle';
@@ -37,6 +44,47 @@ const Main = styled.main`
   height: 100vh;
   background-color: rgb(40, 40, 40);
 `
+
+// reducer
+const initialState = {
+  lightTheme: false,
+  showEnterUsername: false,
+  showGameSetup: false,
+  showJoinGame: false,
+  sessionInfo: null,
+};
+const reducer = (state, action) => {
+  const newState = { ...state };
+  switch (action.type) {
+    case CLOSEMODAL:
+      newState.showEnterUsername = false;
+      newState.showGameSetup = false;
+      newState.showJoinGame = false;
+      break;
+    case SHOWGAMESETUP:
+      newState.showGameSetup = true;
+      break;
+    case SETSESSIONINFO:
+      newState.sessionInfo = action.sessionInfo;
+      break;
+    case SHOWENTERUSERNAME:
+      newState.showEnterUsername = true;
+      break;
+    case SHOWJOINGAME:
+      newState.showJoinGame = true;
+      break;
+    case SHOWMESSAGE:
+      newState.showMessage = true;
+      newState.message = action.message
+      break;
+    case TOGGLETHEME:
+      newState.lightTheme = !newState.lightTheme;
+      break;
+    default:
+      throw new Error('action type not found');
+  }
+  return newState;
+};
 
 const App = () => {
   const [appState, dispatch] = useReducer(reducer, initialState);
