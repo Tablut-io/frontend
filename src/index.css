@@ -1,10 +1,12 @@
+/* styles here are for global styling that do not depend on theme */
 @font-face {
   font-family: norse-kaWl;
   src: url("./norse-font/Norse-KaWl.otf") format("opentype");;
 }
 
-html {
+:root {
   font-size: 16px;
+  --dark-main-bg-color: #484848;
 }
 
 body {

@@ -14,11 +14,12 @@ const ModalContent = styled.div`
   top:50%;
   left:50%;
   transform: translate(-50%,-50%);
-  padding: 10px;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
+  border-radius: 3px;
 `
-const ModalWrapper = styled.div`
+const ModalBackground = styled.div`
   z-index: 100;
   position: fixed;
   top: 0;
@@ -35,11 +36,11 @@ const Modal = ({ children }) => {
     dispatch({ type: CLOSEMODAL });
   }
   return ReactDOM.createPortal(
-    <ModalWrapper onClick={onClickHandler}>
+    <ModalBackground onClick={onClickHandler}>
       <ModalContent onClick={(event) => event.stopPropagation()}>
         {children}
       </ModalContent>
-    </ModalWrapper>
+    </ModalBackground>
   , document.getElementById('modal-root'));
 };
 

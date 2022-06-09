@@ -18,6 +18,7 @@ const Label = styled.label`
   align-items: center;
 `;
 const TextInput = styled.input.attrs({ type: 'text'})`
+  padding: 0.2rem 0.5rem;
   margin: 10px 0px;
   background: gray;
   border-radius: 3px;

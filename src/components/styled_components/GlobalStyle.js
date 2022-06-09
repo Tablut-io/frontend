@@ -1,8 +1,9 @@
 import { createGlobalStyle } from "styled-components";
 
+// styling here instead of index.css if it depends on the current theme
 const GlobalStyle = createGlobalStyle`
   body {
-    background-color: ${(props) => props.theme.lightTheme ? '#d7d7d7' : '#383838'};
+    background-color: var(--dark-main-bg-color);
     color: white;
   }
 `

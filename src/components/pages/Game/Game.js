@@ -5,26 +5,21 @@ import styled from 'styled-components';
 
 // internal imports
 import Board from './Board';
-import PlayerContainer from './PlayerContainer';
+import PlayerInformation from './PlayerInformation';
 import MoveRecord from './MoveRecord';
-import Messages from './Messages';
+import Chat from './Chat';
 import { SHOWMESSAGE } from '../../../utility/actionConstants';
 
 // styled components
 const GameContainer = styled.div`
+  display: grid;
 `
 const GameId = styled.div`
-  font-family: sans-serif;
 `
 
 const ServerMessage = styled.div`
   color: red;
 `
-// helper functions
-const myTurn = (myUserId, attacker, defender, turn) => {
-  const movingPlayerId = turn === 'defender' ? defender?.userId : attacker?.userId;
-  return myUserId === movingPlayerId;
-};
 
 // component responsible for managing the socket
 // from here data received from the socket can send updates to respective components
@@ -36,6 +31,7 @@ const Game = ({ appState, dispatch, socket }) => {
   const gameId = state?.gameId;
   const username = state?.username;
 
+  // state
   const [positions, setPositions] = useState(Array.from(Array(11), () => new Array(11).fill(null)));
   const [attacker, setAttacker] = useState(null);
   const [defender, setDefender] = useState(null);
@@ -73,33 +69,26 @@ const Game = ({ appState, dispatch, socket }) => {
     socket.emit('join game', { gameId, username });
   }, [dispatch, gameId, navigate, socket, username]);
 
+  // event handlers
   let startPos;
-  const handleDrop = (endPos) => {
-    socket.emit('make move', { startPos, endPos });
-  };
-
-  const handleSend = (message) => {
-    socket.emit('player message', message);
-  };
+  const handleDragStart = (position) => startPos = position;
+  const handleDrop = (endPos) => socket.emit('make move', { startPos, endPos });
+  const handleSend = (message) => socket.emit('player message', message);
 
   return (
     <GameContainer>
       <GameId>Game ID: {gameId}</GameId>
-      <div>{attacker?.username} vs. {defender?.username}</div>
       {serverMessage && <ServerMessage>{serverMessage}</ServerMessage>}
-      {myTurn(userId, attacker, defender, turn) &&
-        <div>Your turn</div>
-      }
-      <PlayerContainer />
+      <PlayerInformation attacker={attacker} defender={defender} turn={turn} />
       <Board
         amDefender={defender?.userId === userId}
         turn={turn}
         positions={positions}
-        onDragStart={(position) => startPos = position}
+        onDragStart={handleDragStart}
         onDrop={handleDrop}
       />
       <MoveRecord moves={moves} />
-      <Messages onSend={handleSend} messages={messages} />
+      <Chat onSend={handleSend} messages={messages} />
     </GameContainer>
   );
 }

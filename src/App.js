@@ -22,6 +22,8 @@ import JoinGame from './components/modals/JoinGame';
 import Message from './components/modals/Message';
 // socketio
 import socket from './utility/socket';
+
+
 // reducer constants
 import {
   CLOSEMODAL,
@@ -42,7 +44,7 @@ const Main = styled.main`
   max-width: 1052px;
   min-width: 300px;
   height: 100vh;
-  background-color: rgb(40, 40, 40);
+  background-color: rgb(60, 60, 60);
 `
 
 // reducer and initial state
