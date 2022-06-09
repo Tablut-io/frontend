@@ -44,7 +44,7 @@ const Main = styled.main`
   max-width: 1052px;
   min-width: 300px;
   height: 100vh;
-  background-color: rgb(60, 60, 60);
+  background-color: var(--dark-main-bg-color);
 `
 
 // reducer and initial state

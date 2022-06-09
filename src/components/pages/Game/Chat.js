@@ -2,17 +2,16 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 const ChatContainer = styled.div`
-  border: 1px solid black;  
-  color: black;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  margin: 1rem 0;
   min-width: 50px;
   max-width: 400px;
   min-height: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   padding: 10px;
-  background-color: lightgray;
-  margin: 1rem 0;
+  background-color: var(--dark-bg-color);
+  color: var(--dark-text-color);
 `
 const Messages = styled.ol`
   height: 100%;
@@ -28,9 +27,9 @@ const NewMessageForm = styled.form`
 `;
 
 const NewMessage = styled.input.attrs({ type: 'text'})`
-  color: black;
-  border: 1px solid black;
+  color: var(--dark-text-color);
   width: 100%;
+  margin-top: 0.5em;
 `;
 
 const SendButton = styled.input.attrs({ type: 'submit' })`

@@ -6,9 +6,11 @@
 
 :root {
   font-size: 16px;
-  --dark-main-bg-color: #484848;
-}
-
-body {
   font-family: 'Open Sans', sans-serif;
+  box-sizing: border-box;
+  --dark-bg-color: #484848;
+  --dark-main-bg-color: rgb(60, 60, 60);
+  --dark-text-color: white;
+  --dark-text-error-color: red;
+  --dark-board-color: #966F33;
 }

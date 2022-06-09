@@ -3,13 +3,13 @@ import styled from 'styled-components';
 import MovePair from './MovePair';
 
 const OrderedList = styled.ol`
-  font-family: sans-serif;
-  background-color: lightgray;
+  background-color: var(--dark-bg-color);
+  color: var(--dark-text-color);
   min-width: 50px;
   max-width: 30rem;
   min-height: 4rem;
-  background-color: lightgray;
   padding: 10px;
+  margin-top: 1rem;
 `
 
 const formatMoves = (moves) => {

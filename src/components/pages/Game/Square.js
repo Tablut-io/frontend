@@ -11,7 +11,7 @@ const SquareContainer = styled.div`
   height: 100%;
   grid-column: ${props => props.column};
   grid-row: ${props => props.row};
-  background-color: ${({restricted}) => restricted ? 'green' : '#966F33'}
+  background-color: ${({restricted}) => restricted ? 'green' : 'var(--dark-board-color)'}
 `
 const Piece = styled.div`
   width: 80%;

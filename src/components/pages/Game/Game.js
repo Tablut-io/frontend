@@ -18,7 +18,7 @@ const GameId = styled.div`
 `
 
 const ServerMessage = styled.div`
-  color: red;
+  color: var(--dark-text-error-color);
 `
 
 // component responsible for managing the socket
@@ -41,13 +41,15 @@ const Game = ({ appState, dispatch, socket }) => {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    socket.on('updated game state', ({ moves, positions, turn, attacker, defender }) => {
+    socket.on('updated game state', (gameState) => {
+      const { moves, positions, turn, attacker, defender } = gameState;
       setPositions(positions);
       setAttacker(attacker);
       setDefender(defender);
       setTurn(turn);
       setMessage(null);
       setMoves(moves);
+      console.log('gameState length: ', JSON.stringify(gameState).length);
     });
     socket.on('server message', (message) => {
       setMessage(message);
@@ -77,9 +79,14 @@ const Game = ({ appState, dispatch, socket }) => {
 
   return (
     <GameContainer>
-      <GameId>Game ID: {gameId}</GameId>
       {serverMessage && <ServerMessage>{serverMessage}</ServerMessage>}
-      <PlayerInformation attacker={attacker} defender={defender} turn={turn} />
+      <PlayerInformation
+        attacker={attacker}
+        defender={defender}
+        gameId={gameId}
+        turn={turn}
+        userId={userId}
+      />
       <Board
         amDefender={defender?.userId === userId}
         turn={turn}

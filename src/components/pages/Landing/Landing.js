@@ -24,7 +24,7 @@ const positions = [
 const description = 'Tafl games are a family of ancient Nordic and Celtic strategy board games. '
   + 'The rules for most were lost. However, the rules for tablut (a tafl variant) were written '
   + 'down by the Swedish naturalist Linnaeus in 1732. The goal of this site is to create a place '
-  + 'for people to play the various variations of these games.';
+  + 'for people to play variations of that game. So far there is only one, but more are on the way.';
 
 const Grid = styled.div`
   display: grid;
