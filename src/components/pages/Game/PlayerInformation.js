@@ -1,18 +1,22 @@
 import styled from 'styled-components';
 
+import GameId from './GameId';
+
 const PlayerInformationContainer = styled.div`
   display: flex;
+  align-items: center;
 `
 const TurnString = styled.div`
   background-color: var(--dark-bg-color);
-  margin: 0.5rem;
+  margin: 0.2em;
   border-radius: 3px;
-  padding: 0.5em;
+  padding: 0.2em;
   width: fit-content;
 `
 const Name = styled.div`
   background-color: var(--dark-bg-color);
   padding: 0.5em;
+  border-radius: 3px;
 `
 const PlayersContainer = styled.div`
   display: flex;
@@ -38,14 +42,11 @@ const PlayerInformation = ({ attacker, defender, gameId, turn, userId }) => {
   const isDefender = userId === defender?.userId;
   const isAttacker = userId === attacker?.userId;
   let turnString;
-  if (!attacker || !defender) {
-    turnString = `Game Id: ${gameId}`
-  } else {
-    
-  }
+  if (!!attacker && !!defender) turnString = turn;
+
   return (
     <PlayerInformationContainer>
-      <TurnString>{turnString}</TurnString>
+      {turnString ? <TurnString>{turnString}</TurnString> : <GameId gameId={gameId} />}
       <PlayersContainer>
         <Player>
           <Piece attacker />
