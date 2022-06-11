@@ -12,7 +12,15 @@ const StyledBoard = styled.div`
   max-width: 600px;
 `
 
-const Board = ({ positions, turn, onDragStart, onDrop, amDefender }) => {
+const highlight = (pos, start, end) => {
+  if (!start || !end) return false;
+  return (pos[0] === start[0] && pos[1] === start[1]) || (pos[0] === end[0] && pos[1] === end[1]);
+};
+
+const Board = ({ positions, turn, onDragStart, onDrop, amDefender, lastMove }) => {
+  const lastStart = lastMove?.startPos;
+  const lastEnd = lastMove?.endPos;
+
   return (
     <StyledBoard>
       {positions.map((row, i) => {
@@ -27,6 +35,7 @@ const Board = ({ positions, turn, onDragStart, onDrop, amDefender }) => {
                         onDrop={onDrop}
                         turn={turn}
                         amDefender={amDefender}
+                        highlight={highlight([i, j], lastStart, lastEnd)}
                       />
             })}
           </Fragment>

@@ -5,22 +5,24 @@ import GameId from './GameId';
 const PlayerInformationContainer = styled.div`
   display: flex;
   align-items: center;
-`
+  width: 100%;
+  justify-content: space-between;
+`;
 const TurnString = styled.div`
   background-color: var(--dark-bg-color);
   margin: 0.2em;
   border-radius: 3px;
   padding: 0.2em;
   width: fit-content;
-`
+`;
 const Name = styled.div`
   background-color: var(--dark-bg-color);
   padding: 0.5em;
   border-radius: 3px;
-`
+`;
 const PlayersContainer = styled.div`
   display: flex;
-`
+`;
 const Player = styled.div`
   margin: 0.5rem;
   padding: 0.5em 0.3em;
@@ -28,21 +30,26 @@ const Player = styled.div`
   border-radius: 3px;
   display: flex;
   align-items: center;
-`
-
+`;
 const Piece = styled.div`
   width: 1em;
   height: 1em;
   border-radius: 2px;
   margin-right: 0.25em;
   background-color: ${({attacker}) => attacker ? 'black' : 'white'};
-`
+`;
 
 const PlayerInformation = ({ attacker, defender, gameId, turn, userId }) => {
   const isDefender = userId === defender?.userId;
   const isAttacker = userId === attacker?.userId;
   let turnString;
-  if (!!attacker && !!defender) turnString = turn;
+  if (!!attacker && !!defender) {
+    if (turn === 'defender') {
+      turnString = defender.userId === userId ? 'Your move' : `Waiting for ${defender.username} to move...`;
+    } else {
+      turnString = attacker.userId === userId ? 'Your move' : `Waiting for ${attacker.username} to move...`;
+    }
+  }
 
   return (
     <PlayerInformationContainer>

@@ -13,4 +13,7 @@
   --dark-text-color: white;
   --dark-text-error-color: red;
   --dark-board-color: #966F33;
+  --dark-attacker-color: black;
+  --dark-defender-color: white;
+  --dark-king-color: gold;
 }

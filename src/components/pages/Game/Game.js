@@ -14,9 +14,6 @@ import { SHOWMESSAGE } from '../../../utility/actionConstants';
 const GameContainer = styled.div`
   display: grid;
 `
-const GameId = styled.div`
-`
-
 const ServerMessage = styled.div`
   color: var(--dark-text-error-color);
 `
@@ -49,7 +46,6 @@ const Game = ({ appState, dispatch, socket }) => {
       setTurn(turn);
       setMessage(null);
       setMoves(moves);
-      console.log('gameState length: ', JSON.stringify(gameState).length);
     });
     socket.on('server message', (message) => {
       setMessage(message);
@@ -93,6 +89,7 @@ const Game = ({ appState, dispatch, socket }) => {
         positions={positions}
         onDragStart={handleDragStart}
         onDrop={handleDrop}
+        lastMove={moves ? moves[moves.length - 1] : null}
       />
       <MoveRecord moves={moves} />
       <Chat onSend={handleSend} messages={messages} />

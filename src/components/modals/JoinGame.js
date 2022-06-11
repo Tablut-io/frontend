@@ -24,7 +24,7 @@ const JoinGame = ({ dispatch }) => {
   return (
     <Modal>
       <Form onSubmit={handleSubmit}>
-        <TextInput value={gameId} onChange={handleChange} placeholder='Enter Game Id' />
+        <TextInput autoFocus value={gameId} onChange={handleChange} placeholder='Enter Game Id' />
         <TextInput value={username} onChange={handleUsernameChange} placeholder='Enter name (or leave blank)' />
         <Submit value="Join" />
       </Form>

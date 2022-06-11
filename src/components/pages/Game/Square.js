@@ -11,18 +11,26 @@ const SquareContainer = styled.div`
   height: 100%;
   grid-column: ${props => props.column};
   grid-row: ${props => props.row};
-  background-color: ${({restricted}) => restricted ? 'green' : 'var(--dark-board-color)'}
+  background-color: ${({restricted}) => restricted ? 'green' : 'var(--dark-board-color)'};
+`
+const Highlight = styled.div`
+  height: 100%;
+  width: 100%;
+  background-color: rgba(255, 255, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 `
 const Piece = styled.div`
   width: 80%;
   height: 80%;
   border-radius: 8px;
-  background-color: ${({piece}) => piece === 'attacker' ? 'black' : 'white'};
-  background-color: ${({piece}) => piece === 'king' ? 'gold' : ''};
+  background-color: ${({piece}) => piece === 'attacker' ? 'var(--dark-attacker-color)' : 'var(--dark-defender-color)'};
+  background-color: ${({piece}) => piece === 'king' ? 'var(--dark-king-color)' : ''};
   cursor: ${({draggable}) => draggable ? 'pointer': 'default'};
 `
 
-const Square = ({ position, piece, onDragStart, onDrop, turn, amDefender }) => {
+const Square = ({ highlight, position, piece, onDragStart, onDrop, turn, amDefender }) => {
   const [row, column] = position;
   const restricted = restrictedSquares.some(([restrictedRow, restrictedCol]) => {
     return restrictedRow === row && restrictedCol === column;
@@ -45,13 +53,23 @@ const Square = ({ position, piece, onDragStart, onDrop, turn, amDefender }) => {
       row={row+1}
       column={column+1}
       restricted={restricted}
+      highlight={highlight}
     >
-      {piece &&
-        <Piece
-          piece={piece}
-          draggable={draggable}
-          onDragStart={() => onDragStart(position)}
-        />}
+      {highlight ? piece ? 
+        <Highlight>
+          <Piece
+            piece={piece}
+            draggable={draggable}
+            onDragStart={() => onDragStart(position)}
+          />
+        </Highlight>
+        : <Highlight />
+        : piece && <Piece
+            piece={piece}
+            draggable={draggable}
+            onDragStart={() => onDragStart(position)}
+          />
+      }
     </SquareContainer>
   )
 }
