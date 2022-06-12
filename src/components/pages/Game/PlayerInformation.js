@@ -7,6 +7,8 @@ const PlayerInformationContainer = styled.div`
   align-items: center;
   width: 100%;
   justify-content: space-between;
+  grid-column: infoleft-start / inforight-start;
+  grid-row: infoleft-start / infoleft-start;
 `;
 const TurnString = styled.div`
   background-color: var(--dark-bg-color);

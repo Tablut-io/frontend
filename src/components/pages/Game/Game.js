@@ -13,6 +13,20 @@ import { SHOWMESSAGE } from '../../../utility/actionConstants';
 // styled components
 const GameContainer = styled.div`
   display: grid;
+  grid-template-columns: 60% 40%;
+  grid-template-rows: auto;
+  grid-template-areas: 
+    "infoleft inforight"
+    "mainleft mainright"
+    "bottomleft bottomright";
+`
+const RecordChatContainer = styled.div`
+  grid-column: mainright-start / mainright-end;
+  grid-row: mainright-start / mainright-end;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
 `
 const ServerMessage = styled.div`
   color: var(--dark-text-error-color);
@@ -91,8 +105,10 @@ const Game = ({ appState, dispatch, socket }) => {
         onDrop={handleDrop}
         lastMove={moves ? moves[moves.length - 1] : null}
       />
-      <MoveRecord moves={moves} />
-      <Chat onSend={handleSend} messages={messages} />
+      <RecordChatContainer>
+        <MoveRecord moves={moves} />
+        <Chat onSend={handleSend} messages={messages} />
+      </RecordChatContainer>
     </GameContainer>
   );
 }

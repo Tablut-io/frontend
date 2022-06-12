@@ -71,7 +71,7 @@ const NavigationBar = ({ username, dispatch }) => {
       {!socket.connected && <div>SERVER OFFLINE</div>}
       <RightContainer>
         <DesktopOnly>
-          <PageLink to="/rules">Rules</PageLink>
+          {/* <PageLink to="/rules">Rules</PageLink> */}
         </DesktopOnly>
       </RightContainer>
       {showMenu && <Menu onClose={() => setShowMenu(false)}/>}

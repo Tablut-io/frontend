@@ -10,6 +10,8 @@ const StyledBoard = styled.div`
   background-color: var(--dark-board-color);
   aspect-ratio: 1;
   max-width: 600px;
+  grid-column: mainleft-start / mainleft-end;
+  grid-row: mainleft-start / main-left-end
 `
 
 const highlight = (pos, start, end) => {
