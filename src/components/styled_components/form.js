@@ -16,6 +16,7 @@ const Form = styled.form`
 `
 const Label = styled.label`
   align-items: center;
+  margin-right: 5px;
 `;
 const TextInput = styled.input.attrs({ type: 'text'})`
   padding: 0.2rem 0.5rem;

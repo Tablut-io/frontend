@@ -42,7 +42,7 @@ const CreateGame = ({ dispatch, socket }) => {
           onChange={handleUsernameChange}
         />
         <Label>
-          Side -{'>'}
+          Side
           <Select value={side} onChange={handleSideChange}>
             {sideOptions.map(option => {
               return <Option key={option} value={option}>{option}</Option>
