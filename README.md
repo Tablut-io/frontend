@@ -7,9 +7,10 @@ tablut which is a variant of these games and recorded by [Carl Linnaeus](https:/
 
 ## Tech Stack
 
-* React
-* Styled Components
-* React Router DOM
+* React - for UI
+* SocketIo - for communicating with the game server
+* Styled Components - for in JS styling
+* React Router DOM - to give the traditional website routing feel
 
 ## Getting Started with Create React App
 
