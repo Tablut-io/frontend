@@ -1,7 +1,7 @@
 /* styles here are for global styling that do not depend on theme */
 @font-face {
   font-family: norse-kaWl;
-  src: url("./norse-font/Norse-KaWl.otf") format("opentype");;
+  src: url("./utility/norse-font/Norse-KaWl.otf") format("opentype");;
 }
 
 :root {
