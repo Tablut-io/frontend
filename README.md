@@ -1,4 +1,4 @@
-# The frontend for tablut.io
+# The frontend for [tablut.io](http://tablut.io)
 
 ## Description
 
