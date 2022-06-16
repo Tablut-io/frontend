@@ -69,7 +69,7 @@ const NavigationBar = ({ username, dispatch }) => {
         <Bar />
       </MenuIcon>
       <HomeLink to="/">Tablut.io</HomeLink>
-      {!socket.connected && <div>SERVER OFFLINE</div>}
+      {!socket.connected && <div>connecting...</div>}
       <RightContainer>
         <DesktopOnly>
           {/* <PageLink to="/rules">Rules</PageLink> */}
