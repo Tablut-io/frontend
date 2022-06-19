@@ -38,6 +38,7 @@ const SendButton = styled.input.attrs({ type: 'submit' })`
   background-color: green;
   color: white;
   cursor: pointer;
+  border-radius: 3px;
 `;
 
 const Chat = ({ messages, onSend }) => {

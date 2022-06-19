@@ -1,7 +1,7 @@
 /* styles here are for global styling that do not depend on theme */
 @font-face {
   font-family: norse-kaWl;
-  src: url("./utility/norse-font/Norse-KaWl.otf") format("opentype");;
+  src: url("./assets/norse-font/Norse-KaWl.otf") format("opentype");;
 }
 
 :root {
@@ -16,4 +16,6 @@
   --dark-attacker-color: black;
   --dark-defender-color: white;
   --dark-king-color: gold;
+  --main-max-width: 1052px;
+  --main-min-width: 300px;
 }

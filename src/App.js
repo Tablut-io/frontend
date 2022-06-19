@@ -41,8 +41,8 @@ const Main = styled.main`
   padding: 1em;
   display: flex;
   flex-direction: column;
-  max-width: 1052px;
-  min-width: 300px;
+  max-width: var(--main-max-width);
+  min-width: var(--main-min-width);
   min-height: 100vh;
   background-color: var(--dark-main-bg-color);
 `

@@ -18,6 +18,15 @@ const Header = styled.header`
   align-items: center;
   padding-left: 1em;
 `;
+const Icon = styled.img.attrs({
+  height: '34rem',
+  width: '35rem',
+})`
+`
+const LeftContainer = styled.div`
+  display: flex;
+  align-items: center;
+`
 const RightContainer = styled.div`
   display: flex;
 `;
@@ -47,9 +56,8 @@ const HomeLink = styled(Link)`
   background: 'gray';
   color: ${props => props.primary ? 'white' : 'white'};
   font-size: 2.5rem;
-  margin: 0.5em;
-  padding: 0.25em 1em;
   cursor: pointer;
+  margin-left: 1rem;
   width: fit-content;
   border-radius: 10px;
   text-decoration: ${props => props.underline ? 'underline' : 'none'};
@@ -68,7 +76,10 @@ const NavigationBar = ({ username, dispatch }) => {
         <Bar />
         <Bar />
       </MenuIcon>
-      <HomeLink to="/">Tablut.io</HomeLink>
+      <LeftContainer>
+        <Icon src='images/icons8-viking-helmet-96.png' />
+        <HomeLink to="/">Tablut.io</HomeLink>
+      </LeftContainer>
       {!socket.connected && <div>connecting...</div>}
       <RightContainer>
         <DesktopOnly>
