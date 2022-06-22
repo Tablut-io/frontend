@@ -9,7 +9,7 @@ const Container = styled.div`
   border-radius: 3px;
 `
 const LabelAndId = styled.div`
-  margin-right: 1em;
+  margin-right: 0.5em;
 `
 const CopyButton = styled.button`
   cursor: pointer;

@@ -13,20 +13,16 @@ import { SHOWMESSAGE } from '../../../utility/actionConstants';
 // styled components
 const GameContainer = styled.div`
   display: grid;
-  grid-template-columns: 60% 40%;
-  grid-template-rows: auto;
-  grid-template-areas: 
-    "infoleft inforight"
-    "mainleft mainright"
-    "bottomleft bottomright";
+  grid-template-columns: [start] 60% [sixty] 40% [end];
 `
 const RecordChatContainer = styled.div`
-  grid-column: mainright-start / mainright-end;
-  grid-row: mainright-start / mainright-end;
-  height: 100%;
+  grid-column: sixty / end;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+  @media screen and (max-width: 500px) {
+    grid-column: start / end;
+  };
 `
 const ServerMessage = styled.div`
   color: var(--dark-text-error-color);

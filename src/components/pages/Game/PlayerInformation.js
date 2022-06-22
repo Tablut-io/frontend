@@ -7,8 +7,10 @@ const PlayerInformationContainer = styled.div`
   align-items: center;
   width: 100%;
   justify-content: space-between;
-  grid-column: infoleft-start / inforight-start;
-  grid-row: infoleft-start / infoleft-start;
+  grid-column: start / sixty;
+  @media screen and (max-width: 500px) {
+    grid-column: start / end;
+  };
 `;
 const TurnString = styled.div`
   background-color: var(--dark-bg-color);
@@ -38,6 +40,7 @@ const Piece = styled.div`
   height: 1em;
   border-radius: 2px;
   margin-right: 0.25em;
+  margin-left: 1rem;
   background-color: ${({attacker}) => attacker ? 'black' : 'white'};
 `;
 

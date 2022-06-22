@@ -61,7 +61,7 @@ const HomeLink = styled(Link)`
   width: fit-content;
   border-radius: 10px;
   text-decoration: ${props => props.underline ? 'underline' : 'none'};
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 500px) {
     display: none;
   };
 `;
