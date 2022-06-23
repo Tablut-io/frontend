@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import Menu from './Menu';
-import { PageLink } from '../styled_components/reactRouter';
 import GithubLink from './GithubLink';
 import socket from '../../utility/socket';
 
@@ -83,7 +82,6 @@ const NavigationBar = ({ username, dispatch }) => {
       {!socket.connected && <div>connecting...</div>}
       <RightContainer>
         <DesktopOnly>
-          {/* <PageLink to="/rules">Rules</PageLink> */}
           <GithubLink />
         </DesktopOnly>
       </RightContainer>
